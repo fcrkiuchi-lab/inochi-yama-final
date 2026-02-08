@@ -59,6 +59,11 @@
         .text-block p { margin-bottom: 35px; font-size: 1.05rem; letter-spacing: 0.1em; }
         .quote { font-style: italic; color: var(--color-gold); margin-top: 40px; display: block; font-size: 1.1rem; }
 
+        .issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; max-width: 1100px; margin: 0 auto; }
+        .issue-card { padding: 40px; border-left: 1px solid var(--color-gold-light); }
+        .issue-card h4 { font-size: 1.1rem; margin-bottom: 20px; font-weight: 400; color: var(--color-gold); }
+        .issue-card p { font-size: 0.95rem; line-height: 2.0; color: var(--color-ink-light); }
+
         footer { padding: 60px 5%; text-align: center; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-ink-light); border-top: 1px solid #eee; }
 
         @media (max-width: 900px) { .story-grid { grid-template-columns: 1fr; } .hero-title { font-size: 1.8rem; } }
@@ -120,8 +125,19 @@
         </div>
         <div class="text-block">
             <p>自然を学びなおし、次世代へ。<br>教え、教えられる関係を超えて。共に学び、共に創る。<br>自然から学び、自然と共に在る。</p>
-            <span class="quote">「万物の根源は水である」 ターレス／哲学者</span>
-            <p style="margin-top: 20px; font-size: 0.95rem;">水の総量は46億年前から何も変わっておらず、ずっとこの地球を循環してきました。同時に、水は時として洪水や氾濫などの自然災害として人々の生命の脅威でもあるのです。</p>
+            <span class="quote">「万物の根源は水である」 ― ターレス</span>
+            <p style="margin-top: 20px; font-size: 0.95rem;">水の総量は46億年前から何も変わっておらず、<br>ずっとこの地球を循環してきました。</p>
+        </div>
+
+        <div class="issues-grid">
+            <div class="issue-card">
+                <h4>世界が抱える水の問題</h4>
+                <p>今、世界の人口の3分の1が十分な水を確保できずにいます。山を失うことは、安全な水を供給する「地球の循環システム」を失うことです。</p>
+            </div>
+            <div class="issue-card">
+                <h4>天然のダムとしての山</h4>
+                <p>森林が破壊されると、雨は蓄え（地下水）にならず、洪水を引き起こします。日本文化は、この「自然の理」に対する畏敬の念から生まれました。</p>
+            </div>
         </div>
     </div>
 </section>
