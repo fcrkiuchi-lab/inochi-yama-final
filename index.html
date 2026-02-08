@@ -30,7 +30,7 @@
 
         /* Hero Section */
         .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
-        .hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('scene1.png'), url('シーン１.png'); background-repeat: no-repeat; background-position: center center; background-size: cover; z-index: 1; }
+        .hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('シーン１.png'); background-repeat: no-repeat; background-position: center center; background-size: cover; z-index: 1; }
         .hero-content { position: relative; z-index: 2; opacity: 0; transform: translateY(18px); animation: heroFadeIn 2.2s ease 0.7s forwards; }
         @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
         .hero-title { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 200; letter-spacing: 0.35em; margin-bottom: 40px; color: #FFFFFF; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8); }
@@ -89,10 +89,10 @@
     </div>
     <div class="story-grid">
         <article class="story-card">
-            <div class="video-wrapper"><video controls poster="scene1.png"><source src="命の山MV.mp4" type="video/mp4"></video></div>
+            <div class="video-wrapper"><video controls poster="シーン１.png"><source src="命の山MV.mp4" type="video/mp4"></video></div>
             <div class="story-caption">
-                <p class="caption-en">MV</p>
-                <p class="caption-jp">46億年循環し続ける水。山のメッセージ</p>
+                <p class="caption-en">Message Movie</p>
+                <p class="caption-jp">46億年循環し続ける水と、<br>山の美しき営みのメッセージ</p>
             </div>
         </article>
         <article class="story-card">
