@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>命の山をまもる会</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #F9F9F7;
+            --color-bg-subtle: #F5F5F3;
+            --color-ink: #333333;
+            --color-ink-light: #555555;
+            --color-gold: #A08D5E;
+            --color-gold-light: #B8A77A;
+            --font-serif: 'Noto Serif JP', serif;
+            --transition-slow: 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-medium: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: 0.3s ease;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-serif); background-color: var(--color-bg); color: var(--color-ink); overflow-x: hidden; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: clamp(18px, 3.5vw, 32px) clamp(24px, 5vw, 56px); transition: background var(--transition-fast); }
+        header.scrolled { background: rgba(249, 249, 247, 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .header-logo { font-size: clamp(0.7rem, 1.1vw, 0.88rem); font-weight: 300; color: var(--color-gold); letter-spacing: 0.28em; text-decoration: none; }
+
+        /* Hero Section */
+        .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+        .hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(ellipse 95% 90% at 50% 48%, rgba(249,249,247,0) 0%, rgba(249,249,247,0) 65%, rgba(249,249,247,0.25) 90%, rgba(249,249,247,0.5) 100%), url('シーン１.png'); background-repeat: no-repeat; background-position: center center; background-size: cover; z-index: 1; }
+        .hero-content { position: relative; z-index: 2; opacity: 0; transform: translateY(18px); animation: heroFadeIn 2.2s ease 0.7s forwards; }
+        @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
+        .hero-title { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 200; letter-spacing: 0.35em; margin-bottom: 40px; }
+        .hero-message { font-size: clamp(1.0rem, 1.5vw, 1.2rem); font-weight: 300; line-height: 2.8; letter-spacing: 0.15em; color: var(--color-ink-light); }
+
+        /* Common Section Styles */
+        .section { padding: clamp(80px, 12vw, 150px) 5%; }
+        .section-title { text-align: center; margin-bottom: clamp(60px, 8vw, 100px); }
+        .section-title-en { font-size: 0.75rem; letter-spacing: 0.4em; color: var(--color-gold); display: block; margin-bottom: 12px; font-weight: 400; }
+        .section-title-jp { font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 300; letter-spacing: 0.3em; }
+
+        /* Story Section */
+        .story-section { background: var(--color-bg-subtle); }
+        .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .story-card { opacity: 0; transform: translateY(30px); transition: var(--transition-slow); }
+        .story-card.visible { opacity: 1; transform: translateY(0); }
+        .video-wrapper { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: 2px; overflow: hidden; margin-bottom: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+        .video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
+        .story-caption { text-align: center; padding: 0 10px; }
+        .caption-en { font-size: 0.8rem; letter-spacing: 0.15em; color: var(--color-gold); margin-bottom: 8px; font-weight: 400; }
+        .caption-jp { font-size: 0.95rem; font-weight: 300; line-height: 1.6; letter-spacing: 0.05em; }
+
+        /* Statement / Issues Section */
+        .statement-section { background: var(--color-bg); }
+        .text-block { max-width: 850px; margin: 0 auto 100px; text-align: center; line-height: 2.4; }
+        .text-block p { margin-bottom: 35px; font-size: 1.05rem; letter-spacing: 0.1em; }
+        .quote { font-style: italic; color: var(--color-gold); margin-top: 40px; display: block; font-size: 1.1rem; }
+
+        .issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; max-width: 1100px; margin: 0 auto; }
+        .issue-card { padding: 40px; border-left: 1px solid var(--color-gold-light); }
+        .issue-card h4 { font-size: 1.1rem; margin-bottom: 20px; font-weight: 400; color: var(--color-gold); }
+        .issue-card p { font-size: 0.95rem; line-height: 2.0; color: var(--color-ink-light); }
+
+        /* Membership Section */
+        .membership-section { background: var(--color-gold); color: white; text-align: center; }
+        .membership-section .section-title-en { color: white; opacity: 0.8; }
+        .membership-btn { display: inline-block; margin-top: 40px; padding: 18px 60px; border: 1px solid white; color: white; text-decoration: none; letter-spacing: 0.3em; font-size: 0.9rem; transition: all 0.4s; }
+        .membership-btn:hover { background: white; color: var(--color-gold); }
+
+        footer { padding: 60px 5%; text-align: center; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-ink-light); border-top: 1px solid #eee; }
+
+        @media (max-width: 900px) { .story-grid { grid-template-columns: 1fr; } .hero-title { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <a href="#" class="header-logo">命の山をまもる会 / DWELL UPSTREAM</a>
+</header>
+
+<section class="hero">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">命の山をまもる会</h1>
+        <div class="hero-message">
+            <p>あなたの飲む水はどこから来た水ですか？</p>
+            <p>「山は命の源」 ここからすべての物語が始まります。</p>
+        </div>
+    </div>
+</section>
+
+<section class="section story-section">
+    <div class="section-title">
+        <span class="section-title-en">STORIES</span>
+        <h2 class="section-title-jp">命の山物語</h2>
+    </div>
+    <div class="story-grid">
+        <article class="story-card">
+            <div class="video-wrapper"><video controls poster="シーン１.png"><source src="命の山MV.mp4" type="video/mp4"></video></div>
+            <div class="story-caption">
+                <p class="caption-en">Message Movie</p>
+                <p class="caption-jp">46億年循環し続ける水と、<br>山の美しき営みのメッセージ</p>
+            </div>
+        </article>
+        <article class="story-card">
+            <div class="video-wrapper"><video controls><source src="お母さんを待つ森の子.mp4" type="video/mp4"></video></div>
+            <div class="story-caption">
+                <p class="caption-en">Forest Child</p>
+                <p class="caption-jp">里に降りざるをえない現状。<br>社会問題の裏にある真実</p>
+            </div>
+        </article>
+        <article class="story-card">
+            <div class="video-wrapper"><video controls><source src="第１話クマの生態と自然の循環.mp4" type="video/mp4"></video></div>
+            <div class="story-caption">
+                <p class="caption-en">Ecology</p>
+                <p class="caption-jp">クマは意図せず、ただ懸命に生きることで、<br>その営み自体が森を育てている</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="section statement-section">
+    <div class="container">
+        <div class="section-title">
+            <span class="section-title-en">STATEMENT</span>
+            <h2 class="section-title-jp">共育共創</h2>
+        </div>
+        <div class="text-block">
+            <p>自然を学びなおし、次世代へ。<br>教え、教えられる関係を超えて。共に学び、共に創る。<br>自然から学び、自然と共に在る。</p>
+            <span class="quote">「万物の根源は水である」 ― ターレス</span>
+            <p style="margin-top: 20px; font-size: 0.95rem;">水の総量は46億年前から何も変わっておらず、<br>ずっとこの地球を循環してきました。</p>
+        </div>
+
+        <div class="issues-grid">
+            <div class="issue-card">
+                <h4>世界が抱える水の問題</h4>
+                <p>今、世界の人口の3分の1が十分な水を確保できずにいます。山を失うことは、安全な水を供給する「地球の循環システム」を失うことです。</p>
+            </div>
+            <div class="issue-card">
+                <h4>天然のダムとしての山</h4>
+                <p>森林が破壊されると、雨は蓄え（地下水）にならず、洪水を引き起こします。日本文化は、この「自然の理」に対する畏敬の念から生まれました。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section membership-section">
+    <div class="section-title">
+        <span class="section-title-en">JOIN US</span>
+        <h2 class="section-title-jp">山の民になる</h2>
+    </div>
+    <div class="container">
+        <p>命の山をまもる会と共に歩み、次世代へ命を繋ぐ。</p>
+        <a href="#" class="membership-btn">参加する</a>
+    </div>
+</section>
+
+<footer>&copy; 2025 命の山をまもる会 All Rights Reserved.</footer>
+
+<script>
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 80); });
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.story-card').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
