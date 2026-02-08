@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>命の山をまもる会</title>
+    <title>命の山を守る会</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
 
         /* Hero Section */
         .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
-        .hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('シーン１.png'); background-repeat: no-repeat; background-position: center center; background-size: cover; z-index: 1; }
+        .hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('シーン１.png'); background-repeat: no-repeat; background-position: center center; background-size: cover; z-index: 1; }
         .hero-content { position: relative; z-index: 2; opacity: 0; transform: translateY(18px); animation: heroFadeIn 2.2s ease 0.7s forwards; }
         @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
         .hero-title { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 200; letter-spacing: 0.35em; margin-bottom: 40px; color: #FFFFFF; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8); }
@@ -59,17 +59,6 @@
         .text-block p { margin-bottom: 35px; font-size: 1.05rem; letter-spacing: 0.1em; }
         .quote { font-style: italic; color: var(--color-gold); margin-top: 40px; display: block; font-size: 1.1rem; }
 
-        .issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; max-width: 1100px; margin: 0 auto; }
-        .issue-card { padding: 40px; border-left: 1px solid var(--color-gold-light); }
-        .issue-card h4 { font-size: 1.1rem; margin-bottom: 20px; font-weight: 400; color: var(--color-gold); }
-        .issue-card p { font-size: 0.95rem; line-height: 2.0; color: var(--color-ink-light); }
-
-        /* Membership Section */
-        .membership-section { background: var(--color-gold); color: white; text-align: center; }
-        .membership-section .section-title-en { color: white; opacity: 0.8; }
-        .membership-btn { display: inline-block; margin-top: 40px; padding: 18px 60px; border: 1px solid white; color: white; text-decoration: none; letter-spacing: 0.3em; font-size: 0.9rem; transition: all 0.4s; }
-        .membership-btn:hover { background: white; color: var(--color-gold); }
-
         footer { padding: 60px 5%; text-align: center; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--color-ink-light); border-top: 1px solid #eee; }
 
         @media (max-width: 900px) { .story-grid { grid-template-columns: 1fr; } .hero-title { font-size: 1.8rem; } }
@@ -86,8 +75,9 @@
     <div class="hero-content">
         <h1 class="hero-title">命の山を守る会</h1>
         <div class="hero-message">
-            <p>あなたの飲む水はどこから来た水ですか？</p>
-            <p>「山は命の源」 ここからすべての物語が始まります。</p>
+            <p>あなたの飲む水は、どこから来た水ですか？</p>
+            <p>命の循環がはじまる山。</p>
+            <p>ここからすべての物語が始まります。</p>
         </div>
     </div>
 </section>
@@ -101,22 +91,22 @@
         <article class="story-card">
             <div class="video-wrapper"><video controls poster="シーン１.png"><source src="命の山MV.mp4" type="video/mp4"></video></div>
             <div class="story-caption">
-                <p class="caption-en">Message Movie</p>
-                <p class="caption-jp">46億年循環し続ける水と、<br>山の美しき営みのメッセージ</p>
+                <p class="caption-en">MV</p>
+                <p class="caption-jp">46億年循環し続ける水。山のメッセージ</p>
             </div>
         </article>
         <article class="story-card">
             <div class="video-wrapper"><video controls><source src="お母さんを待つ森の子.mp4" type="video/mp4"></video></div>
             <div class="story-caption">
-                <p class="caption-en">Forest Child</p>
-                <p class="caption-jp">里に降りざるをえない現状。<br>社会問題の裏にある真実</p>
+                <p class="caption-en">母を待つ森の子 / cub in the forest</p>
+                <p class="caption-jp">クマが里に降りざるを得ない現状。社会問題の裏にあるストーリー</p>
             </div>
         </article>
         <article class="story-card">
             <div class="video-wrapper"><video controls><source src="第１話クマの生態と自然の循環.mp4" type="video/mp4"></video></div>
             <div class="story-caption">
                 <p class="caption-en">Ecology</p>
-                <p class="caption-jp">クマは意図せず、ただ懸命に生きることで、<br>その営み自体が森を育てている</p>
+                <p class="caption-jp">ただ懸命に生きる。<br>その営みが森を育てる。</p>
             </div>
         </article>
     </div>
@@ -130,31 +120,9 @@
         </div>
         <div class="text-block">
             <p>自然を学びなおし、次世代へ。<br>教え、教えられる関係を超えて。共に学び、共に創る。<br>自然から学び、自然と共に在る。</p>
-            <span class="quote">「万物の根源は水である」 ― ターレス</span>
-            <p style="margin-top: 20px; font-size: 0.95rem;">水の総量は46億年前から何も変わっておらず、<br>ずっとこの地球を循環してきました。</p>
+            <span class="quote">「万物の根源は水である」 ターレス／哲学者</span>
+            <p style="margin-top: 20px; font-size: 0.95rem;">水の総量は46億年前から何も変わっておらず、ずっとこの地球を循環してきました。同時に、水は時として洪水や氾濫などの自然災害として人々の生命の脅威でもあるのです。</p>
         </div>
-
-        <div class="issues-grid">
-            <div class="issue-card">
-                <h4>世界が抱える水の問題</h4>
-                <p>今、世界の人口の3分の1が十分な水を確保できずにいます。山を失うことは、安全な水を供給する「地球の循環システム」を失うことです。</p>
-            </div>
-            <div class="issue-card">
-                <h4>天然のダムとしての山</h4>
-                <p>森林が破壊されると、雨は蓄え（地下水）にならず、洪水を引き起こします。日本文化は、この「自然の理」に対する畏敬の念から生まれました。</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section membership-section">
-    <div class="section-title">
-        <span class="section-title-en">JOIN US</span>
-        <h2 class="section-title-jp">山の民になる</h2>
-    </div>
-    <div class="container">
-        <p>命の山をまもる会と共に歩み、次世代へ命を繋ぐ。</p>
-        <a href="#" class="membership-btn">参加する</a>
     </div>
 </section>
 
