@@ -26,15 +26,15 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
         header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: clamp(18px, 3.5vw, 32px) clamp(24px, 5vw, 56px); transition: background var(--transition-fast); }
         header.scrolled { background: rgba(249, 249, 247, 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-        .header-logo { font-size: clamp(0.7rem, 1.1vw, 0.88rem); font-weight: 300; color: var(--color-gold); letter-spacing: 0.28em; text-decoration: none; }
+        .header-logo { font-size: clamp(0.7rem, 1.1vw, 0.88rem); font-weight: 300; color: #FFFFFF; letter-spacing: 0.28em; text-decoration: none; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); }
 
         /* Hero Section */
         .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
-        .hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(ellipse 95% 90% at 50% 48%, rgba(249,249,247,0) 0%, rgba(249,249,247,0) 65%, rgba(249,249,247,0.25) 90%, rgba(249,249,247,0.5) 100%), url('シーン１.png'); background-repeat: no-repeat; background-position: center center; background-size: cover; z-index: 1; }
+        .hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), url('シーン１.png'); background-repeat: no-repeat; background-position: center center; background-size: cover; z-index: 1; }
         .hero-content { position: relative; z-index: 2; opacity: 0; transform: translateY(18px); animation: heroFadeIn 2.2s ease 0.7s forwards; }
         @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
-        .hero-title { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 200; letter-spacing: 0.35em; margin-bottom: 40px; }
-        .hero-message { font-size: clamp(1.0rem, 1.5vw, 1.2rem); font-weight: 300; line-height: 2.8; letter-spacing: 0.15em; color: var(--color-ink-light); }
+        .hero-title { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 200; letter-spacing: 0.35em; margin-bottom: 40px; color: #FFFFFF; text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8); }
+        .hero-message { font-size: clamp(1.0rem, 1.5vw, 1.2rem); font-weight: 300; line-height: 2.8; letter-spacing: 0.15em; color: #FFFFFF; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); }
 
         /* Common Section Styles */
         .section { padding: clamp(80px, 12vw, 150px) 5%; }
@@ -78,13 +78,13 @@
 <body>
 
 <header id="header">
-    <a href="#" class="header-logo">命の山をまもる会 / DWELL UPSTREAM</a>
+    <a href="#" class="header-logo">命の山を守る会</a>
 </header>
 
 <section class="hero">
     <div class="hero-background"></div>
     <div class="hero-content">
-        <h1 class="hero-title">命の山をまもる会</h1>
+        <h1 class="hero-title">命の山を守る会</h1>
         <div class="hero-message">
             <p>あなたの飲む水はどこから来た水ですか？</p>
             <p>「山は命の源」 ここからすべての物語が始まります。</p>
@@ -158,7 +158,7 @@
     </div>
 </section>
 
-<footer>&copy; 2025 命の山をまもる会 All Rights Reserved.</footer>
+<footer>&copy; 2025 命の山を守る会 All Rights Reserved.</footer>
 
 <script>
     const header = document.getElementById('header');
