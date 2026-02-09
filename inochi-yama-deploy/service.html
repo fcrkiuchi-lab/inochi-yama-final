@@ -140,15 +140,27 @@
     const header = document.getElementById('header');
     window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 80); });
 
-    // キャッシュ無効化処理 (v1)
+    // キャッシュ無効化処理 (v2)
     document.addEventListener('DOMContentLoaded', function() {
-        // URLにタイムスタンプを追加してキャッシュを回避
+        // URLにタイムスタンプを追加してキャッシュを回避（より強力なバージョン）
         if (!window.location.href.includes('cache_bust')) {
             const timestamp = new Date().getTime();
-            const url = window.location.href + (window.location.href.includes('?') ? '&' : '?') + 'cache_bust=' + timestamp;
-            window.location.href = url;
+            const separator = window.location.href.includes('?') ? '&' : '?';
+            const url = window.location.href + separator + 'cache_bust=' + timestamp;
+            window.location.replace(url); // location.replace を使用
             return;
         }
+
+        // meta タグを追加してキャッシュを無効化
+        const meta = document.createElement('meta');
+        meta.httpEquiv = 'Cache-Control';
+        meta.content = 'no-cache, no-store, must-revalidate';
+        document.head.appendChild(meta);
+
+        const pragmaMeta = document.createElement('meta');
+        pragmaMeta.httpEquiv = 'Pragma';
+        pragmaMeta.content = 'no-cache';
+        document.head.appendChild(pragmaMeta);
     });
 </script>
 
