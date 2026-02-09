@@ -511,8 +511,37 @@
         }
     }
 
+    // キャッシュ無効化処理 (v2)
+    function addCacheBuster() {
+        // URLにタイムスタンプを追加してキャッシュを回避（より強力なバージョン）
+        if (!window.location.href.includes('cache_bust')) {
+            const timestamp = new Date().getTime();
+            const separator = window.location.href.includes('?') ? '&' : '?';
+            const url = window.location.href + separator + 'cache_bust=' + timestamp;
+            window.location.replace(url); // location.replace を使用
+            return true;
+        }
+
+        // meta タグを追加してキャッシュを無効化
+        const meta = document.createElement('meta');
+        meta.httpEquiv = 'Cache-Control';
+        meta.content = 'no-cache, no-store, must-revalidate';
+        document.head.appendChild(meta);
+
+        const pragmaMeta = document.createElement('meta');
+        pragmaMeta.httpEquiv = 'Pragma';
+        pragmaMeta.content = 'no-cache';
+        document.head.appendChild(pragmaMeta);
+
+        return false;
+    }
+
     // DOMContentLoaded時に初期化
-    window.addEventListener('DOMContentLoaded', initAccordions);
+    window.addEventListener('DOMContentLoaded', function() {
+        if (!addCacheBuster()) {
+            initAccordions();
+        }
+    });
 
     // 万が一DOMContentLoadedが既に完了していた場合のためのフォールバック
     if (document.readyState === 'interactive' || document.readyState === 'complete') {
