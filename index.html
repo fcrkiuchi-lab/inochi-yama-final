@@ -31,30 +31,6 @@
         /* Hero Section */
         .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
 
-        /* シンプルな鳥のアイコンスタイル */
-        .simple-bird {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            width: 18px;
-            height: 18px;
-            font-size: 18px;
-            color: white;
-            opacity: 0;
-            z-index: 10;
-            animation: birdAppear 3s ease-in 4s forwards;
-        }
-
-        @keyframes birdAppear {
-            0% {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
 
         .hero-background-container {
             position: absolute;
@@ -201,8 +177,6 @@
         <h1 class="hero-title">命の山を守る会</h1>
         <div style="text-align: center;">
             <div class="hero-message">
-                <!-- 非常にシンプルな鳥のアイコン -->
-                <div class="simple-bird">✦</div>
 
                 <p>あなたの飲む水は、どこから来た水ですか？</p>
                 <p>命の循環がはじまる山。</p>
@@ -296,7 +270,6 @@
             document.querySelector('.hero-background-image').style.backgroundImage = "url('scene1.png')";
         };
 
-        // JavaScriptの鳥のアニメーションは使用せず、CSSのみで制御
     });
 </script>
 
