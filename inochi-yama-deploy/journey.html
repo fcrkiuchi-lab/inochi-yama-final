@@ -149,19 +149,21 @@
         }
 
         .accordion-content {
-            max-height: 0;
+            max-height: 0 !important;
             overflow: hidden;
             transition: max-height 0.5s ease-out;
             background-color: white;
             padding: 0;
             margin-bottom: 10px;
             visibility: hidden;
+            display: none;
         }
 
         .accordion-content.open {
-            max-height: 2000px;
+            max-height: 2000px !important;
             padding: 20px;
             visibility: visible;
+            display: block;
         }
 
         .accordion-content-inner {
@@ -366,25 +368,18 @@
         const isActive = header.classList.contains('active');
 
         // 全てのアコーディオンを閉じる
-        const allHeaders = document.querySelectorAll('.accordion-header');
-        const allContents = document.querySelectorAll('.accordion-content');
-
-        allHeaders.forEach(item => {
-            item.classList.remove('active');
-        });
-
-        allContents.forEach(item => {
-            item.classList.remove('open');
-            item.style.maxHeight = '0px';
-        });
+        closeAllAccordions();
 
         // クリックされたアコーディオンを開く（閉じていた場合）
         if (!isActive) {
             header.classList.add('active');
             const content = header.nextElementSibling;
+
+            // 表示させる
+            content.style.display = 'block';
             content.classList.add('open');
 
-            // 明示的に高さを設定
+            // 明示的に高さを設定（少し遅延させることで表示が確実に反映される）
             setTimeout(() => {
                 content.style.maxHeight = content.scrollHeight + 'px';
             }, 10);
@@ -399,13 +394,26 @@
         }
     }
 
-    // 初めてページを訪れた場合、最初のアコーディオンを自動的に開く
-    window.addEventListener('DOMContentLoaded', function() {
-        // 全てのアコーディオンを初期状態で閉じる
-        document.querySelectorAll('.accordion-content').forEach(content => {
-            content.style.maxHeight = '0px';
-            content.classList.remove('open');
+    // すべてのアコーディオンを閉じる関数
+    function closeAllAccordions() {
+        const allHeaders = document.querySelectorAll('.accordion-header');
+        const allContents = document.querySelectorAll('.accordion-content');
+
+        allHeaders.forEach(item => {
+            item.classList.remove('active');
         });
+
+        allContents.forEach(item => {
+            item.classList.remove('open');
+            item.style.maxHeight = '0px';
+            item.style.display = 'none';
+        });
+    }
+
+    // 初期化と最初のアコーディオンを開く
+    function initAccordions() {
+        // 全てのアコーディオンを初期状態で閉じる
+        closeAllAccordions();
 
         // ページロード時に最初のアコーディオンを開く
         const firstAccordion = document.querySelector('.accordion-header');
@@ -415,7 +423,15 @@
                 toggleAccordion(firstAccordion);
             }, 500);
         }
-    });
+    }
+
+    // DOMContentLoaded時に初期化
+    window.addEventListener('DOMContentLoaded', initAccordions);
+
+    // 万が一DOMContentLoadedが既に完了していた場合のためのフォールバック
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+        initAccordions();
+    }
 </script>
 
 </body>
