@@ -186,6 +186,7 @@
             margin-bottom: 25px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             min-height: 200px;
+            min-width: 200px; /* 追加: 最小幅の設定 */
         }
         .video-wrapper iframe {
             position: absolute;
@@ -358,7 +359,7 @@
     <div class="story-grid">
         <article class="story-card">
             <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/KXRv9yyN_tQ?rel=0" title="命の山MV" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/KXRv9yyN_tQ?rel=0&origin=https://inochiyama.netlify.app" title="命の山MV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Message Movie</p>
@@ -367,7 +368,7 @@
         </article>
         <article class="story-card">
             <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/H5cLetVTvJ0?rel=0" title="Bears entering urban areas" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/H5cLetVTvJ0?rel=0&origin=https://inochiyama.netlify.app" title="Bears entering urban areas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Bears entering urban areas</p>
@@ -376,7 +377,7 @@
         </article>
         <article class="story-card">
             <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/QhrYy-R8ZBs?rel=0" title="第１話クマの生態と自然の循環" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/QhrYy-R8ZBs?rel=0&origin=https://inochiyama.netlify.app" title="第１話クマの生態と自然の循環" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Ecology</p>
@@ -493,17 +494,33 @@
 
             const iframe = wrapper.querySelector('iframe');
             if (iframe) {
-                // 3秒後に自動的にloadingクラスを削除（タイムアウト設定）
+                // 元のソースURLを保存
+                const originalSrc = iframe.src;
+
+                // ビデオ読み込みエラーを処理するためのイベントリスナー
+                iframe.addEventListener('error', function() {
+                    console.error('Video failed to load:', originalSrc);
+
+                    // youtube-nocookie.comを試した後、標準のyoutube.comに切り替え
+                    if (originalSrc.includes('youtube-nocookie.com')) {
+                        const fallbackSrc = originalSrc.replace('youtube-nocookie.com', 'youtube.com');
+                        iframe.src = fallbackSrc;
+                        console.log('Trying fallback URL:', fallbackSrc);
+                    }
+                });
+
+                // 5秒後に自動的にloadingクラスを削除（タイムアウト設定）
                 const timeoutId = setTimeout(() => {
                     wrapper.classList.remove('loading');
                     wrapper.classList.add('loaded');
-                }, 3000);
+                }, 5000);
 
                 // iframeがロードされたらすぐに削除
                 iframe.addEventListener('load', function() {
                     clearTimeout(timeoutId);
                     wrapper.classList.remove('loading');
                     wrapper.classList.add('loaded');
+                    console.log('Video loaded successfully:', iframe.src);
                 });
             }
         });
