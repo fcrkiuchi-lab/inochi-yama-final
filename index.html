@@ -31,66 +31,29 @@
         /* Hero Section */
         .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
 
-        /* 鳥のスタイル - シンプルに修正 */
-        .bird {
+        /* シンプルな鳥のアイコンスタイル */
+        .simple-bird {
             position: absolute;
-            top: -10px;
-            right: 10px;
-            width: 20px;
-            height: 10px;
+            top: 5px;
+            right: 5px;
+            width: 18px;
+            height: 18px;
+            font-size: 18px;
+            color: white;
             opacity: 0;
             z-index: 10;
+            animation: birdAppear 3s ease-in 4s forwards;
         }
 
-        .bird-body {
-            position: absolute;
-            top: 3px;
-            left: 7px;
-            width: 6px;
-            height: 4px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-        }
-
-        .bird-wing-left {
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            width: 7px;
-            height: 3px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50% 50% 0 30%;
-            transform-origin: right center;
-        }
-
-        .bird-wing-right {
-            position: absolute;
-            top: 2px;
-            right: 2px;
-            width: 7px;
-            height: 3px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50% 50% 30% 0;
-            transform-origin: left center;
-        }
-
-        /* 羽ばたきアニメーション */
-        @keyframes wingFlapLeft {
-            0%, 100% { transform: rotate(0); }
-            50% { transform: rotate(-15deg); }
-        }
-
-        @keyframes wingFlapRight {
-            0%, 100% { transform: rotate(0); }
-            50% { transform: rotate(15deg); }
-        }
-
-        .wing-flap-left {
-            animation: wingFlapLeft 0.8s ease-in-out infinite;
-        }
-
-        .wing-flap-right {
-            animation: wingFlapRight 0.8s ease-in-out infinite;
+        @keyframes birdAppear {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .hero-background-container {
@@ -238,12 +201,8 @@
         <h1 class="hero-title">命の山を守る会</h1>
         <div style="text-align: center;">
             <div class="hero-message">
-                <!-- 鳥の要素 - 実際のDOM要素を使用 -->
-                <div class="bird" id="hero-bird">
-                    <div class="bird-wing-left" id="wing-left"></div>
-                    <div class="bird-body"></div>
-                    <div class="bird-wing-right" id="wing-right"></div>
-                </div>
+                <!-- 非常にシンプルな鳥のアイコン -->
+                <div class="simple-bird">✦</div>
 
                 <p>あなたの飲む水は、どこから来た水ですか？</p>
                 <p>命の循環がはじまる山。</p>
@@ -337,65 +296,7 @@
             document.querySelector('.hero-background-image').style.backgroundImage = "url('scene1.png')";
         };
 
-        // 鳥のアニメーション - 修正版
-        setTimeout(function() {
-            const bird = document.getElementById('hero-bird');
-            const wingLeft = document.getElementById('wing-left');
-            const wingRight = document.getElementById('wing-right');
-
-            if (!bird || !wingLeft || !wingRight) {
-                console.error('鳥の要素が見つかりません');
-                return;
-            }
-
-            console.log('鳥のアニメーション開始');
-
-            // 飛んでくるアニメーション（CSSの代わりにJSでアニメーション）
-            bird.style.opacity = '0';
-            bird.style.transform = 'translate(200px, -100px) scale(0.4)';
-
-            // アニメーション
-            const startTime = Date.now();
-            const duration = 3000; // 3秒間
-
-            function animate() {
-                const elapsed = Date.now() - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-
-                // イージング関数
-                const eased = --progress * progress * progress + 1;
-
-                // 位置の計算
-                const translateX = (1 - eased) * 200;
-                const translateY = (1 - eased) * -100;
-                const scale = 0.4 + (eased * 0.6);
-                const opacity = Math.min(eased * 1.5, 1);
-
-                // スタイルの適用
-                bird.style.opacity = opacity;
-                bird.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-
-                if (progress < 1) {
-                    requestAnimationFrame(animate);
-                } else {
-                    // アニメーション完了後、羽ばたき開始
-                    startWingFlap();
-                }
-            }
-
-            // アニメーション開始
-            setTimeout(() => {
-                requestAnimationFrame(animate);
-            }, 500);
-
-            // 羽ばたきのアニメーション
-            function startWingFlap() {
-                console.log('羽ばたき開始');
-                wingLeft.classList.add('wing-flap-left');
-                wingRight.classList.add('wing-flap-right');
-            }
-
-        }, 3000); // ヒーローメッセージが表示された後に鳥を登場させる
+        // JavaScriptの鳥のアニメーションは使用せず、CSSのみで制御
     });
 </script>
 
