@@ -153,13 +153,15 @@
             overflow: hidden;
             transition: max-height 0.5s ease-out;
             background-color: white;
-            padding: 0 20px;
+            padding: 0;
             margin-bottom: 10px;
+            visibility: hidden;
         }
 
         .accordion-content.open {
             max-height: 2000px;
             padding: 20px;
+            visibility: visible;
         }
 
         .accordion-content-inner {
@@ -231,7 +233,7 @@
             }
 
             .accordion-content {
-                padding: 0 15px;
+                padding: 0;
             }
 
             .accordion-content.open {
@@ -373,7 +375,7 @@
 
         allContents.forEach(item => {
             item.classList.remove('open');
-            item.style.maxHeight = null;
+            item.style.maxHeight = '0px';
         });
 
         // クリックされたアコーディオンを開く（閉じていた場合）
@@ -381,7 +383,11 @@
             header.classList.add('active');
             const content = header.nextElementSibling;
             content.classList.add('open');
-            content.style.maxHeight = content.scrollHeight + "px";
+
+            // 明示的に高さを設定
+            setTimeout(() => {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }, 10);
 
             // スクロール位置を調整（モバイル対応）
             const headerRect = header.getBoundingClientRect();
@@ -394,7 +400,13 @@
     }
 
     // 初めてページを訪れた場合、最初のアコーディオンを自動的に開く
-    window.addEventListener('load', function() {
+    window.addEventListener('DOMContentLoaded', function() {
+        // 全てのアコーディオンを初期状態で閉じる
+        document.querySelectorAll('.accordion-content').forEach(content => {
+            content.style.maxHeight = '0px';
+            content.classList.remove('open');
+        });
+
         // ページロード時に最初のアコーディオンを開く
         const firstAccordion = document.querySelector('.accordion-header');
         if (firstAccordion) {
