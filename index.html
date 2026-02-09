@@ -176,16 +176,16 @@
 
         /* Statement / Issues Section */
         .statement-section { background: var(--color-bg); }
-        .text-block { max-width: 850px; margin: 0 auto 70px; text-align: center; line-height: 2.4; }
+        .text-block { max-width: 850px; margin: 0 auto 70px; text-align: center; line-height: 2.2; }
         .text-block p { margin-bottom: 28px; font-size: 1.18rem; letter-spacing: 0.1em; }
 
         .quote-container {
-            margin: 40px auto;
-            padding: 25px 0;
+            margin: 60px auto;
+            padding: 30px 0;
             position: relative;
-            max-width: 85%;
-            border-top: 1px solid rgba(160, 141, 94, 0.4);
-            border-bottom: 1px solid rgba(160, 141, 94, 0.4);
+            max-width: 80%;
+            border-top: 1px solid rgba(160, 141, 94, 0.3);
+            border-bottom: 1px solid rgba(160, 141, 94, 0.3);
         }
         .quote {
             font-style: italic;
@@ -272,7 +272,7 @@
     <div class="story-grid">
         <article class="story-card">
             <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/KXRv9yyN_tQ?rel=0&modestbranding=1" title="命の山MV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/KXRv9yyN_tQ" title="命の山MV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Message Movie</p>
@@ -281,7 +281,7 @@
         </article>
         <article class="story-card">
             <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/H5cLetVTvJ0?rel=0&modestbranding=1" title="Bears entering urban areas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/H5cLetVTvJ0" title="Bears entering urban areas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Bears entering urban areas</p>
@@ -290,7 +290,7 @@
         </article>
         <article class="story-card">
             <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/QhrYy-R8ZBs?rel=0&modestbranding=1" title="第１話クマの生態と自然の循環" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/QhrYy-R8ZBs" title="第１話クマの生態と自然の循環" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Ecology</p>
@@ -308,13 +308,18 @@
         </div>
         <div class="text-block">
             <p>自然を学びなおし、次世代へ。<br>教え、教えられる関係を超えて。<br>自然から学び、自然と共に在る。</p>
-            <div class="quote-container" style="margin-top: 50px; margin-bottom: 50px;">
+
+            <div class="quote-container" style="margin-top: 80px; margin-bottom: 80px;">
                 <span class="quote">「万物の根源は水である」 ターレス／哲学者</span>
             </div>
-            <p>水の総量は、46億年前から変わっておらず、<br>ずっとこの地球を循環し、すべての命と関わってきました</p>
-            <p>生態系の頂点に位置する私たち人間は 水の巡りを変えてしまい<br>命の巡りが変わりかけている</p>
-            <p>それは、私たちだけではなく あらゆる生命の脅威でもあるのです。</p>
-            <p>今、私たちには何ができるのでしょうか。</p>
+
+            <p style="margin-bottom: 35px;">水の総量は、46億年前から変わっておらず、<br>ずっとこの地球を循環し、すべての命と関わってきました</p>
+
+            <p style="margin-bottom: 35px;">生態系の頂点に位置する私たち人間は 水の巡りを変えてしまい<br>命の巡りが変わりかけている</p>
+
+            <p style="margin-bottom: 35px;">それは、私たちだけではなく あらゆる生命の脅威でもあるのです。</p>
+
+            <p style="margin-bottom: 35px;">今、私たちには何ができるのでしょうか。</p>
         </div>
 
     </div>
@@ -364,39 +369,17 @@
             const preloadImg = new Image();
             preloadImg.src = 'シーン１.png';
             preloadImg.onload = function() {
-                console.log('背景画像の読み込みが完了しました');
                 document.querySelector('.hero-background-image').style.backgroundImage = "url('シーン１.png')";
             };
             preloadImg.onerror = function() {
-                console.log('日本語ファイル名の画像読み込みに失敗しました、代替画像を使用します');
                 document.querySelector('.hero-background-image').style.backgroundImage = "url('scene1.png')";
             };
 
-            // 動画の読み込みを最適化
-            const videoWrappers = document.querySelectorAll('.video-wrapper');
-            videoWrappers.forEach(function(wrapper) {
-                const iframe = wrapper.querySelector('iframe');
-                if (iframe) {
-                    // 動画読み込みのログ
-                    console.log('動画の読み込みを開始: ' + iframe.src);
-
-                    // iframeの読み込みイベント
-                    iframe.addEventListener('load', function() {
-                        console.log('動画の読み込みが完了しました: ' + this.src);
-                        // 読み込み完了時にスタイル調整（必要に応じて）
-                        wrapper.classList.add('loaded');
-                    });
-
-                    // エラー処理（クロスドメイン制約があるため限定的）
-                    setTimeout(function() {
-                        // 一定時間後にロード状態を確認
-                        if (!wrapper.classList.contains('loaded')) {
-                            console.log('動画の読み込みが遅延しています: ' + iframe.src);
-                            // ここで再読み込みを試みることも可能
-                            iframe.src = iframe.src;
-                        }
-                    }, 5000); // 5秒後にチェック
-                }
+            // 動画のラッパー要素にロード済みクラスを追加
+            document.querySelectorAll('.video-wrapper iframe').forEach(function(iframe) {
+                iframe.onload = function() {
+                    iframe.parentElement.classList.add('loaded');
+                };
             });
         });
     });
