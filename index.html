@@ -134,6 +134,43 @@
         .section-title-en { font-size: 0.9rem; letter-spacing: 0.4em; color: var(--color-gold); display: block; margin-bottom: 14px; font-weight: 400; }
         .section-title-jp { font-size: clamp(1.6rem, 2.8vw, 2.1rem); font-weight: 300; letter-spacing: 0.3em; }
 
+        /* 2カラムレイアウト */
+        .two-column-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .column {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        .column-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .column-title-en {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            color: var(--color-gold);
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        .column-title-jp {
+            font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+            font-weight: 300;
+            letter-spacing: 0.2em;
+        }
+        @media (max-width: 900px) {
+            .two-column-section {
+                flex-direction: column;
+            }
+        }
+
         /* Story Section */
         .story-section { background: var(--color-bg-subtle); }
         .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
@@ -324,13 +361,32 @@
 <section class="section story-section">
     <div class="container">
         <div class="section-title">
-            <span class="section-title-en">ACTIVITIES</span>
-            <h2 class="section-title-jp">活動紹介</h2>
+            <span class="section-title-en">OUR ACTIVITIES & VISION</span>
+            <h2 class="section-title-jp">私たちの活動と展望</h2>
         </div>
-        <div class="text-block">
-            <p style="margin-bottom: 35px;">私たちは、絵本や紙芝居を通じて<br>子どもたちに「自然の循環」を伝えています。</p>
+        <div class="two-column-section">
+            <div class="column">
+                <div class="column-title">
+                    <span class="column-title-en">ACTIVITIES</span>
+                    <h3 class="column-title-jp">活動紹介</h3>
+                </div>
+                <div class="text-block">
+                    <p style="margin-bottom: 35px;">私たちは、絵本や紙芝居を通じて<br>子どもたちに「自然の循環」を伝えています。</p>
 
-            <p style="margin-bottom: 35px;">YouTubeやSNSで、<br>自然とは何か、どう共生していくかを<br>世界中の人々と共に学び、創っていきます。</p>
+                    <p style="margin-bottom: 35px;">YouTubeやSNSで、<br>自然とは何か、どう共生していくかを<br>世界中の人々と共に学び、創っていきます。</p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="column-title">
+                    <span class="column-title-en">CIRCULATION OF ECONOMY</span>
+                    <h3 class="column-title-jp">経済の循環</h3>
+                </div>
+                <div class="text-block">
+                    <p style="margin-bottom: 35px;">メンバーシップ、サービス、協業による収益は<br>次の絵本や動画となり、共育共創へと循環します。</p>
+
+                    <p style="margin-bottom: 35px;">私たちは、暮らしと経済を<br>自然の循環に組み込んでいきます。</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
