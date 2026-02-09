@@ -145,22 +145,72 @@
         .caption-en { font-size: 0.9rem; letter-spacing: 0.15em; color: var(--color-gold); margin-bottom: 10px; font-weight: 400; }
         .caption-jp { font-size: 1.1rem; font-weight: 300; line-height: 1.6; letter-spacing: 0.05em; }
 
-        /* Statement / Issues Section */
-        .statement-section { background: var(--color-bg); }
-        .text-block { max-width: 850px; margin: 0 auto 100px; text-align: center; line-height: 2.4; }
-        .text-block p { margin-bottom: 35px; font-size: 1.18rem; letter-spacing: 0.1em; }
-        .statement-intro { padding-bottom: 10px; }
+        /* New Section Styles */
+        .content-section {
+            background: var(--color-bg);
+            padding: clamp(80px, 12vw, 120px) 5%;
+            position: relative;
+        }
+
+        .content-section:nth-child(even) {
+            background: var(--color-bg-subtle);
+        }
+
+        .section-inner {
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 2.4;
+        }
+
+        .section-header {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title-main {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            margin-bottom: 25px;
+            color: var(--color-gold);
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title-main::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 1px;
+            background-color: var(--color-gold-light);
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-content {
+            margin-bottom: 70px;
+        }
+
+        .section-content p {
+            margin-bottom: 25px;
+            font-size: 1.18rem;
+            letter-spacing: 0.1em;
+        }
+
         .quote {
             font-style: italic;
             color: var(--color-gold);
-            margin-top: 40px;
-            margin-bottom: 40px;
-            padding-top: 15px;
-            padding-bottom: 15px;
+            margin: 40px auto;
+            padding: 15px 0;
             display: block;
             font-size: 1.25rem;
             position: relative;
+            max-width: 80%;
         }
+
         .quote::before {
             content: "";
             display: block;
@@ -174,6 +224,29 @@
             opacity: 0.5;
         }
 
+        .cta-button {
+            display: inline-block;
+            padding: 12px 40px;
+            margin: 20px 15px;
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold);
+            text-decoration: none;
+            letter-spacing: 0.2em;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background-color: transparent;
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-gold);
+            color: white;
+        }
+
+        .button-container {
+            margin-top: 50px;
+        }
+
+        /* Legacy styles kept for compatibility */
         .issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; max-width: 1100px; margin: 0 auto; }
         .issue-card { padding: 40px; border-left: 1px solid var(--color-gold-light); }
         .issue-card h4 { font-size: 1.25rem; margin-bottom: 20px; font-weight: 400; color: var(--color-gold); }
@@ -239,36 +312,72 @@
     </div>
 </section>
 
-<section class="section statement-section">
-    <div class="container">
-        <div class="section-title">
-            <span class="section-title-en">STATEMENT</span>
-            <h2 class="section-title-jp">共育共創</h2>
+<!-- Section 1: 水の循環 -->
+<section class="content-section">
+    <div class="section-inner">
+        <div class="section-header">
+            <h2 class="section-title-main">水の循環</h2>
         </div>
-        <div class="text-block">
-            <div class="statement-intro">
-                <p>自然を学びなおし、次世代へ。<br>教え、教えられる関係を超えて。<br>自然から学び、自然と共に在る。</p>
-            </div>
-
+        <div class="section-content">
             <span class="quote">「万物の根源は水である」 ターレス／哲学者</span>
 
-            <div class="statement-content">
-                <p style="margin-top: 10px; font-size: 1.15rem;">水の総量は、46億年前から変わっておらず、<br>ずっとこの地球を循環し、すべての命と関わってきました</p>
-                <p style="font-size: 1.15rem;">生態系の頂点に位置する私たち人間は<br>水の巡りを変えてしまい 命の巡りが変わりかけている</p>
-                <p style="font-size: 1.15rem;">それは、私たちだけではなく あらゆる生命の脅威でもあるのです。</p>
-                <p style="font-size: 1.15rem;">今、私たちには何ができるのでしょうか。</p>
-            </div>
-        </div>
+            <p>水の総量は、46億年前から変わっておらず、<br>ずっとこの地球を循環し、すべての命と関わってきました</p>
 
-        <div class="issues-grid">
-            <div class="issue-card">
-                <h4>世界が抱える水の問題</h4>
-                <p>今、世界の人口の3分の1が十分な水を確保できずにいます。</p>
-            </div>
-            <div class="issue-card">
-                <h4>天然のダムとしての山</h4>
-                <p>森林が破壊されると、雨は蓄え（地下水）にならず、洪水を引き起こします。日本文化は、この「自然の理」に対する畏敬の念から生まれました。</p>
-            </div>
+            <p>生態系の頂点に位置する私たち人間は<br>水の巡りを変えてしまい 命の巡りが変わりかけている</p>
+
+            <p>それは、私たちだけではなく あらゆる生命の脅威でもあるのです。</p>
+
+            <p>今、私たちには何ができるのでしょうか。</p>
+        </div>
+    </div>
+</section>
+
+<!-- Section 2: 活動紹介 -->
+<section class="content-section">
+    <div class="section-inner">
+        <div class="section-header">
+            <h2 class="section-title-main">活動紹介</h2>
+        </div>
+        <div class="section-content">
+            <p>私たちは、絵本や紙芝居を通じて<br>子どもたちに「自然の循環」を伝えています。</p>
+
+            <p>YouTubeやSNSで、<br>自然とは何か、どう共生していくかを<br>世界中の人々と共に学び、創っていきます。</p>
+        </div>
+        <div class="button-container">
+            <a href="#" class="cta-button">Our Story / 私たちの物語を読む</a>
+        </div>
+    </div>
+</section>
+
+<!-- Section 3: 経済の循環 -->
+<section class="content-section">
+    <div class="section-inner">
+        <div class="section-header">
+            <h2 class="section-title-main">経済の循環</h2>
+        </div>
+        <div class="section-content">
+            <p>メンバーシップ、サービス、協業による収益は<br>次の絵本や動画となり、共育共創へと循環します。</p>
+
+            <p>私たちは、暮らしと経済を<br>自然の循環に組み込んでいきます。</p>
+
+            <p>小さな一歩です。</p>
+
+            <p>でも、これが新しい世界基準となり、<br>自然と共生できる「次世代へ渡すべき未来へ」となります。</p>
+
+            <p style="margin-top: 40px; font-weight: 400;">命の山をまもる会</p>
+        </div>
+    </div>
+</section>
+
+<!-- Section 4: CTA -->
+<section class="content-section">
+    <div class="section-inner">
+        <div class="section-content">
+            <p style="font-size: 1.4rem; font-weight: 300;">一緒に、循環を育てませんか？</p>
+        </div>
+        <div class="button-container">
+            <a href="#" class="cta-button">Our Story</a>
+            <a href="#" class="cta-button">参加する▼</a>
         </div>
     </div>
 </section>
