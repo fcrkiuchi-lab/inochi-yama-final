@@ -262,7 +262,35 @@
             color: white;
         }
 
-        footer { padding: 60px 5%; text-align: center; font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-ink-light); border-top: 1px solid #eee; }
+        footer {
+            padding: 60px 5% 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--color-ink-light);
+            border-top: 1px solid #eee;
+        }
+        .footer-links {
+            margin-bottom: 30px;
+        }
+        .footer-link {
+            display: inline-block;
+            padding: 8px 20px;
+            margin: 0 10px;
+            color: var(--color-gold);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            border: 1px solid var(--color-gold-light);
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .footer-link:hover {
+            background-color: var(--color-gold);
+            color: white;
+        }
+        .footer-copyright {
+            opacity: 0.8;
+        }
 
         @media (max-width: 900px) {
             .story-grid { grid-template-columns: 1fr; }
@@ -391,7 +419,12 @@
     </div>
 </section>
 
-<footer>&copy; 2025 命の山を守る会 All Rights Reserved.</footer>
+<footer>
+    <div class="footer-links">
+        <a href="history.html" class="footer-link">ヒストリー</a>
+    </div>
+    <div class="footer-copyright">&copy; 2025 命の山を守る会 All Rights Reserved.</div>
+</footer>
 
 <script>
     const header = document.getElementById('header');
