@@ -36,50 +36,70 @@
             padding: 0 5%;
         }
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: clamp(18px, 3.5vw, 32px) clamp(24px, 5vw, 56px);
-            background: rgba(249, 249, 247, 0.94);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(160, 141, 94, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 1000;
+          background-color: rgba(255, 255, 255, 0.9);
+          padding: 15px 0;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+
+        header .header-inner {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
         .header-logo {
-            font-size: clamp(0.85rem, 1.3vw, 1.0rem);
-            font-weight: 300;
-            color: var(--color-ink);
-            letter-spacing: 0.28em;
-            text-decoration: none;
+          font-size: clamp(0.85rem, 1.3vw, 1.0rem);
+          font-weight: 300;
+          color: var(--color-ink);
+          letter-spacing: 0.28em;
+          text-decoration: none;
         }
+
         header nav {
-            display: flex;
-            gap: 20px;
+          display: flex;
+          gap: 24px;
         }
+
         header nav a {
-            font-size: 0.9rem;
-            color: var(--color-ink);
-            text-decoration: none;
-            letter-spacing: 0.1em;
-            transition: color 0.3s ease;
+          color: #2d6a4f;
+          text-decoration: none;
+          font-size: 16px;
+          font-weight: 600;
+          padding: 8px 14px;
+          border-radius: 6px;
+          transition: background 0.3s, color 0.3s;
         }
+
         header nav a:hover {
-            color: var(--color-gold);
+          background-color: rgba(45, 106, 79, 0.12);
+        }
+
+        header nav a.active {
+          background-color: #2d6a4f;
+          color: #ffffff;
         }
 
         @media (max-width: 768px) {
-            header nav {
-                display: none;
-            }
+          header .header-inner {
+            flex-direction: column;
+            gap: 10px;
+          }
+
+          header nav {
+            gap: 16px;
+          }
         }
 
         /* ヒストリーヘッダー */
         .journey-header {
-            padding-top: 150px;
+            padding-top: 180px;
             padding-bottom: 80px;
             text-align: center;
         }
@@ -314,13 +334,15 @@
 <body>
 
 <header>
-  <a href="index.html" class="header-logo">命の山をまもる会</a>
-  <nav>
-    <a href="index.html">ホーム</a>
-    <a href="journey.html">会の歩み</a>
-    <a href="service.html">サービス</a>
-    <a href="lab.html">ラボ</a>
-  </nav>
+  <div class="header-inner">
+    <a href="index.html" class="header-logo">命の山をまもる会</a>
+    <nav>
+      <a href="index.html">ホーム</a>
+      <a href="journey.html" class="active">会の歩み</a>
+      <a href="service.html">サービス</a>
+      <a href="lab.html">ラボ</a>
+    </nav>
+  </div>
 </header>
 
 <div class="container">
