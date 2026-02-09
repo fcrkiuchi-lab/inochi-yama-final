@@ -475,6 +475,17 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.story-card').forEach(el => observer.observe(el));
 
+    // キャッシュ無効化処理 (v1)
+    document.addEventListener('DOMContentLoaded', function() {
+        // URLにタイムスタンプを追加してキャッシュを回避
+        if (!window.location.href.includes('cache_bust')) {
+            const timestamp = new Date().getTime();
+            const url = window.location.href + (window.location.href.includes('?') ? '&' : '?') + 'cache_bust=' + timestamp;
+            window.location.href = url;
+            return;
+        }
+    });
+
     // ページ読み込み時の処理
     window.addEventListener('load', function() {
         console.log('ページが完全に読み込まれました');
