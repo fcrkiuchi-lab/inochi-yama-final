@@ -1,0 +1,19 @@
+{
+  "videos": {
+    "video-left": {
+      "src": "https://www.youtube.com/embed/KXRv9yyN_tQ",
+      "width": "300",
+      "height": "200"
+    },
+    "video-center": {
+      "src": "https://www.youtube.com/embed/H5cLetVTvJ0",
+      "width": "300",
+      "height": "200"
+    },
+    "video-right": {
+      "src": "https://www.youtube.com/embed/QhrYy-R8ZBs",
+      "width": "300",
+      "height": "200"
+    }
+  }
+}
