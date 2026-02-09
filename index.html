@@ -72,7 +72,7 @@
             opacity: 0;
             animation: gradientFadeIn2 8s ease-in-out 1.5s forwards;
         }
-        .hero-content { position: relative; z-index: 2; opacity: 0; transform: translateY(18px); animation: heroFadeIn 2.2s ease 2.5s forwards; }
+        .hero-content { position: relative; z-index: 2; }
         @keyframes heroFadeIn { to { opacity: 1; transform: translateY(0); } }
         @keyframes backgroundImageFadeIn {
             0% { opacity: 0; }
@@ -94,8 +94,25 @@
             40% { opacity: 0.2; }
             100% { opacity: 0.5; }
         }
-        .hero-title { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 200; letter-spacing: 0.35em; margin-bottom: 40px; color: #FFFFFF; text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7), 0 0 5px rgba(0, 0, 0, 0.5); }
-        .hero-message { font-size: clamp(1.0rem, 1.5vw, 1.2rem); font-weight: 300; line-height: 2.8; letter-spacing: 0.15em; color: #FFFFFF; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), 0 0 3px rgba(0, 0, 0, 0.4); }
+        .hero-title {
+            font-size: clamp(2.2rem, 5.5vw, 4rem);
+            font-weight: 200;
+            letter-spacing: 0.35em;
+            margin-bottom: 40px;
+            color: #FFFFFF;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7), 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .hero-message {
+            font-size: clamp(1.0rem, 1.5vw, 1.2rem);
+            font-weight: 300;
+            line-height: 2.8;
+            letter-spacing: 0.15em;
+            color: #FFFFFF;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), 0 0 3px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transform: translateY(18px);
+            animation: heroFadeIn 2.2s ease 2.5s forwards;
+        }
 
         /* Common Section Styles */
         .section { padding: clamp(80px, 12vw, 150px) 5%; }
