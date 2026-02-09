@@ -383,8 +383,16 @@
 
             // 明示的に高さを設定（少し遅延させることで表示が確実に反映される）
             setTimeout(() => {
-                content.style.maxHeight = content.scrollHeight + 'px';
-            }, 10);
+                const height = content.scrollHeight;
+                content.style.maxHeight = (height + 50) + 'px'; // 余裕を持たせる
+
+                // コンテンツの高さが変わる可能性があるため、再計算
+                window.addEventListener('resize', () => {
+                    if (content.classList.contains('open')) {
+                        content.style.maxHeight = (content.scrollHeight + 50) + 'px';
+                    }
+                });
+            }, 50);
 
             // スクロール位置を調整（モバイル対応）
             const headerRect = header.getBoundingClientRect();

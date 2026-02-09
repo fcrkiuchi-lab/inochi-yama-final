@@ -45,7 +45,8 @@
             left: -5%;
             width: 110%;
             height: 110%;
-            background-image: url('シーン１.png'), url('scene1.png');
+            background-color: #2A374A; /* フォールバック用の背景色 */
+            background-image: url('シーン１.png');
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
@@ -203,6 +204,13 @@
             color: white;
             font-size: 0.9rem;
             z-index: 1;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .video-wrapper.loaded::before {
+            content: none;
         }
         .story-caption { text-align: center; padding: 0 10px; }
         .caption-en { font-size: 0.9rem; letter-spacing: 0.15em; color: var(--color-gold); margin-bottom: 10px; font-weight: 400; }
@@ -350,7 +358,7 @@
     <div class="story-grid">
         <article class="story-card">
             <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/KXRv9yyN_tQ" title="命の山MV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/KXRv9yyN_tQ?rel=0" title="命の山MV" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Message Movie</p>
@@ -359,7 +367,7 @@
         </article>
         <article class="story-card">
             <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/H5cLetVTvJ0" title="Bears entering urban areas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/H5cLetVTvJ0?rel=0" title="Bears entering urban areas" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Bears entering urban areas</p>
@@ -368,7 +376,7 @@
         </article>
         <article class="story-card">
             <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/QhrYy-R8ZBs" title="第１話クマの生態と自然の循環" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/QhrYy-R8ZBs?rel=0" title="第１話クマの生態と自然の循環" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Ecology</p>
@@ -451,60 +459,53 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.story-card').forEach(el => observer.observe(el));
 
-    // 画像読み込み確認
+    // ページ読み込み時の処理
     window.addEventListener('load', function() {
         console.log('ページが完全に読み込まれました');
 
-        // 背景画像の事前読み込み
-        const preloadImg = new Image();
-        preloadImg.src = 'シーン１.png';
-        preloadImg.onload = function() {
+        // 背景画像の読み込み
+        const bgImage = document.querySelector('.hero-background-image');
+
+        // まず日本語ファイル名を試す
+        const jpImg = new Image();
+        jpImg.src = 'シーン１.png';
+
+        jpImg.onload = function() {
             console.log('シーン１.png が読み込まれました');
-            document.querySelector('.hero-background-image').style.backgroundImage = "url('シーン１.png')";
+            bgImage.style.backgroundImage = "url('シーン１.png')";
         };
-        preloadImg.onerror = function() {
+
+        jpImg.onerror = function() {
             console.log('シーン１.png の読み込みに失敗しました');
-            document.querySelector('.hero-background-image').style.backgroundImage = "url('scene1.png')";
+            // 日本語ファイル名が読み込めない場合は英語ファイル名を使用
+            const enImg = new Image();
+            enImg.src = 'scene1.png';
+
+            enImg.onload = function() {
+                bgImage.style.backgroundImage = "url('scene1.png')";
+            };
         };
 
-        // ページ読み込み時の処理
-        window.addEventListener('load', function() {
-            // 背景画像の読み込み
-            const bgImage = document.querySelector('.hero-background-image');
+        // 各YouTubeビデオのロード状態を管理
+        const videoWrappers = document.querySelectorAll('.video-wrapper');
+        videoWrappers.forEach(function(wrapper) {
+            wrapper.classList.add('loading');
 
-            // まず日本語ファイル名を試す
-            const jpImg = new Image();
-            jpImg.src = 'シーン１.png';
+            const iframe = wrapper.querySelector('iframe');
+            if (iframe) {
+                // 3秒後に自動的にloadingクラスを削除（タイムアウト設定）
+                const timeoutId = setTimeout(() => {
+                    wrapper.classList.remove('loading');
+                    wrapper.classList.add('loaded');
+                }, 3000);
 
-            jpImg.onload = function() {
-                bgImage.style.backgroundImage = "url('シーン１.png')";
-            };
-
-            jpImg.onerror = function() {
-                // 日本語ファイル名が読み込めない場合は英語ファイル名を使用
-                const enImg = new Image();
-                enImg.src = 'scene1.png';
-
-                enImg.onload = function() {
-                    bgImage.style.backgroundImage = "url('scene1.png')";
-                };
-            };
-
-            // 各YouTubeビデオのロード状態を管理
-            const videoWrappers = document.querySelectorAll('.video-wrapper');
-            videoWrappers.forEach(function(wrapper) {
-                // "loaded"クラスを追加
-                wrapper.classList.add('loading');
-
-                const iframe = wrapper.querySelector('iframe');
-                if (iframe) {
-                    // iframeが読み込まれたらloadingクラスを削除
-                    iframe.onload = function() {
-                        wrapper.classList.remove('loading');
-                        wrapper.classList.add('loaded');
-                    };
-                }
-            });
+                // iframeがロードされたらすぐに削除
+                iframe.addEventListener('load', function() {
+                    clearTimeout(timeoutId);
+                    wrapper.classList.remove('loading');
+                    wrapper.classList.add('loaded');
+                });
+            }
         });
     });
 </script>
