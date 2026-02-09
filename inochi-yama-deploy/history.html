@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>命の山を守る会 - ヒストリー</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #F9F9F7;
+            --color-bg-subtle: #F5F5F3;
+            --color-ink: #333333;
+            --color-ink-light: #555555;
+            --color-gold: #A08D5E;
+            --color-gold-light: #B8A77A;
+            --font-serif: 'Noto Serif JP', serif;
+            --transition-slow: 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-medium: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: 0.3s ease;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-serif); background-color: var(--color-bg); color: var(--color-ink); overflow-x: hidden; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 5%; }
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: clamp(18px, 3.5vw, 32px) clamp(24px, 5vw, 56px); background: rgba(249, 249, 247, 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .header-logo { font-size: clamp(0.85rem, 1.3vw, 1.0rem); font-weight: 300; color: var(--color-ink); letter-spacing: 0.28em; text-decoration: none; }
+
+        /* 履歴ページのスタイル */
+        .history-header {
+            padding-top: 150px;
+            padding-bottom: 100px;
+            text-align: center;
+            background-color: #f5f5f3;
+            position: relative;
+            overflow: hidden;
+        }
+        .history-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(245, 245, 243, 0.3), rgba(245, 245, 243, 0.8));
+            z-index: 1;
+        }
+        .history-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        .history-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-gold);
+            letter-spacing: 0.15em;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+            font-weight: 400;
+        }
+
+        .history-section {
+            margin-bottom: 100px;
+            position: relative;
+        }
+        .history-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50px;
+            width: 1px;
+            background-color: rgba(160, 141, 94, 0.2);
+            z-index: 0;
+        }
+        .history-section-title {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: var(--color-gold);
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 0.15em;
+            position: relative;
+            z-index: 1;
+            background-color: var(--color-bg);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 2px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+            margin-left: auto;
+            margin-right: auto;
+            display: table;
+        }
+        .history-text {
+            margin-bottom: 35px;
+            line-height: 2.3;
+            letter-spacing: 0.08em;
+            font-size: 1.15rem;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+        .history-text:last-child {
+            margin-bottom: 10px;
+        }
+        .history-separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 70px auto;
+            position: relative;
+            z-index: 2;
+            height: 40px;
+        }
+        .history-separator::before {
+            content: "⦿";
+            font-size: 1.5rem;
+            color: var(--color-gold);
+            opacity: 0.8;
+            background-color: var(--color-bg);
+            padding: 0 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 60px 0 40px;
+            color: var(--color-ink);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f0ede5;
+            padding: 12px 30px;
+            border: 1px solid var(--color-gold-light);
+        }
+        .back-link:hover {
+            color: white;
+            background-color: var(--color-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(160, 141, 94, 0.2);
+        }
+
+        footer {
+            padding: 60px 5%;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--color-ink-light);
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .history-header {
+                padding-top: 100px;
+                padding-bottom: 40px;
+            }
+            .history-section {
+                margin-bottom: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <a href="index.html" class="header-logo">命の山を守る会</a>
+</header>
+
+<div class="container">
+    <div class="history-header">
+        <h1 class="history-title">命の山をまもる会</h1>
+        <div class="history-subtitle">Our Journey - 私たちの歩み</div>
+    </div>
+
+    <section class="history-section">
+        <h2 class="history-section-title">【違和感】</h2>
+        <p class="history-text">
+            私たち3人は、自然破壊を憂い<br>
+            環境団体に所属しそれぞれの活動をしていました。
+        </p>
+        <p class="history-text">
+            学びを深めるうちに、問いが生まれました。
+        </p>
+        <p class="history-text">
+            この活動は自然全体に対してなのか？<br>
+            寄付・助成金に依存する活動は、歪みが生じているのではないか？<br>
+            そもそも「自然保護」という観念は、人間中心ではないか？
+        </p>
+        <p class="history-text">
+            学びを進めるうちに、最も大きな気づきにたどり着きました。
+        </p>
+        <p class="history-text">
+            自然は、決して弱くない。<br>
+            自然なしで生きていけないのは、私たち人間なのだ。
+        </p>
+        <p class="history-text">
+            このまま世界が気づかなければ、近い将来・・・
+        </p>
+    </section>
+
+    <div class="history-separator"></div>
+
+    <section class="history-section">
+        <h2 class="history-section-title">【決断】</h2>
+        <p class="history-text">
+            私たちは話し合い、決めました。
+        </p>
+        <p class="history-text">
+            活動資金を寄付だよりにしない。<br>
+            自ら活動資金の軸を作り、<br>
+            賛同するみんなで世界を創っていく仕組みを作ろう。
+        </p>
+        <p class="history-text">
+            クマも、日々の営みが「自然の循環そのもの」。
+        </p>
+        <p class="history-text">
+            クマ（自然）から学び、実装していく。
+        </p>
+        <p class="history-text">
+            生態系の頂点である人間が取り組めば、<br>
+            破壊の逆回転のスピードも加速するだろう。
+        </p>
+        <p class="history-text">
+            「命の山をまもる会」の始まり。
+        </p>
+    </section>
+
+    <div class="history-separator"></div>
+
+    <section class="history-section">
+        <h2 class="history-section-title">【種をまく】種子散布</h2>
+        <p class="history-text">
+            2020年結成し、2021年YouTubeで<br>
+            「水道水がなくなる」というタイトルで発信を始めました。
+        </p>
+        <p class="history-text">
+            自然の現状、循環の大切さ、人間の影響など。
+        </p>
+        <p class="history-text">
+            少人数という事もあり、<br>
+            制作することに追われ、活動自体が停滞しました。
+        </p>
+    </section>
+
+    <div class="history-separator"></div>
+
+    <section class="history-section">
+        <h2 class="history-section-title">【芽が出る】発芽・成長</h2>
+        <p class="history-text">
+            母たちから、次世代へ。<br>
+            子どもたちへ相談し、手伝いを依頼しました。
+        </p>
+        <p class="history-text">
+            アイデアからAIを使って制作の効率化を図る。
+        </p>
+        <p class="history-text">
+            共に学び、共に創る。<br>
+            「共育共創」は次の段階へ。
+        </p>
+        <p class="history-text">
+            手伝いを始めるうちに、学びを深めていきました。
+        </p>
+        <p class="history-text">
+            やがて学びは、問いへと変わり、<br>
+            さらに学びへとつながり・・・
+        </p>
+        <p class="history-text">
+            これはこのままだと・・・
+        </p>
+        <p class="history-text">
+            友人に相談し、活動を伝え、<br>
+            自然の大切さを理解していた友人も加わりました。
+        </p>
+    </section>
+
+    <div class="history-separator"></div>
+
+    <section class="history-section">
+        <h2 class="history-section-title">【花を咲かせ、次へ渡す】開花・結実</h2>
+        <p class="history-text">
+            この芽は、やがて実を結ぶ。<br>
+            そして、種を残す。
+        </p>
+        <p class="history-text">
+            次の世代へ。
+        </p>
+        <p class="history-text">
+            自然と共生できる「次世代へ渡すべき未来へ」。
+        </p>
+        <p class="history-text">
+            この活動が自然の循環サイクルと成らん事を願って、<br>
+            ぜひご参加ください。
+        </p>
+    </section>
+
+    <a href="index.html" class="back-link">← トップページに戻る</a>
+</div>
+
+<footer>&copy; 2025 命の山を守る会 All Rights Reserved.</footer>
+
+<script>
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 80);
+    });
+</script>
+
+</body>
+</html>
