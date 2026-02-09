@@ -30,8 +30,6 @@
 
         /* Hero Section */
         .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
-
-
         .hero-background-container {
             position: absolute;
             top: 0;
@@ -104,6 +102,16 @@
             color: #FFFFFF;
             text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7), 0 0 5px rgba(0, 0, 0, 0.5);
         }
+        .hero-message-wrapper {
+            display: inline-block;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            padding: 12px 24px;
+            border-radius: 6px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
+        }
         .hero-message {
             font-size: clamp(1.0rem, 1.5vw, 1.2rem);
             font-weight: 300;
@@ -114,14 +122,6 @@
             opacity: 0;
             transform: translateY(18px);
             animation: heroFadeIn 1.8s ease 1.5s forwards;
-            display: inline-block;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
-            padding: 10px 18px;
-            border-radius: 6px;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.12);
         }
         .hero-message p {
             margin: 5px 0;
@@ -139,122 +139,105 @@
         .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 1200px; margin: 0 auto; }
         .story-card { opacity: 0; transform: translateY(30px); transition: var(--transition-slow); }
         .story-card.visible { opacity: 1; transform: translateY(0); }
-        .video-wrapper { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: 2px; overflow: hidden; margin-bottom: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-        .video-wrapper video, .video-wrapper iframe { width: 100%; height: 100%; object-fit: cover; border: none; }
+        .video-wrapper {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            min-height: 200px;
+        }
+        .video-wrapper video, .video-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            border: none;
+        }
+        .video-wrapper.loaded::after {
+            display: none;
+        }
+        .video-wrapper::after {
+            content: "動画読み込み中...";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 0.9rem;
+        }
         .story-caption { text-align: center; padding: 0 10px; }
         .caption-en { font-size: 0.9rem; letter-spacing: 0.15em; color: var(--color-gold); margin-bottom: 10px; font-weight: 400; }
         .caption-jp { font-size: 1.1rem; font-weight: 300; line-height: 1.6; letter-spacing: 0.05em; }
 
-        /* New Section Styles */
-        .content-section {
-            background: var(--color-bg);
-            padding: clamp(80px, 12vw, 120px) 5%;
+        /* Statement / Issues Section */
+        .statement-section { background: var(--color-bg); }
+        .text-block { max-width: 850px; margin: 0 auto 70px; text-align: center; line-height: 2.4; }
+        .text-block p { margin-bottom: 28px; font-size: 1.18rem; letter-spacing: 0.1em; }
+
+        .quote-container {
+            margin: 40px auto;
+            padding: 25px 0;
             position: relative;
+            max-width: 85%;
+            border-top: 1px solid rgba(160, 141, 94, 0.4);
+            border-bottom: 1px solid rgba(160, 141, 94, 0.4);
         }
-
-        .content-section:nth-child(even) {
-            background: var(--color-bg-subtle);
-        }
-
-        .section-inner {
-            max-width: 850px;
-            margin: 0 auto;
-            text-align: center;
-            line-height: 2.4;
-        }
-
-        .section-header {
-            margin-bottom: 50px;
-            position: relative;
-        }
-
-        .section-title-main {
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            font-weight: 300;
-            letter-spacing: 0.2em;
-            margin-bottom: 25px;
-            color: var(--color-gold);
-            display: inline-block;
-            position: relative;
-        }
-
-        .section-title-main::after {
-            content: "";
-            display: block;
-            width: 40px;
-            height: 1px;
-            background-color: var(--color-gold-light);
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .section-content {
-            margin-bottom: 70px;
-        }
-
-        .section-content p {
-            margin-bottom: 25px;
-            font-size: 1.18rem;
-            letter-spacing: 0.1em;
-        }
-
         .quote {
             font-style: italic;
             color: var(--color-gold);
-            margin: 40px auto;
-            padding: 15px 0;
             display: block;
             font-size: 1.25rem;
-            position: relative;
-            max-width: 80%;
+            line-height: 1.8;
         }
 
-        .quote::before {
-            content: "";
-            display: block;
-            height: 1px;
-            width: 120px;
-            background: var(--color-gold-light);
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0.5;
-        }
 
+        /* CTA Section */
+        .cta-section { background: var(--color-bg-subtle); text-align: center; }
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .cta-message {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 50px;
+            letter-spacing: 0.1em;
+        }
+        .button-container {
+            margin-top: 50px;
+        }
         .cta-button {
             display: inline-block;
             padding: 12px 40px;
-            margin: 20px 15px;
+            margin: 15px;
             border: 1px solid var(--color-gold);
             color: var(--color-gold);
             text-decoration: none;
             letter-spacing: 0.2em;
-            font-size: 0.95rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
             background-color: transparent;
         }
-
         .cta-button:hover {
             background-color: var(--color-gold);
             color: white;
         }
 
-        .button-container {
-            margin-top: 50px;
-        }
-
-        /* Legacy styles kept for compatibility */
-        .issues-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; max-width: 1100px; margin: 0 auto; }
-        .issue-card { padding: 40px; border-left: 1px solid var(--color-gold-light); }
-        .issue-card h4 { font-size: 1.25rem; margin-bottom: 20px; font-weight: 400; color: var(--color-gold); }
-        .issue-card p { font-size: 1.1rem; line-height: 2.0; color: var(--color-ink-light); }
-
         footer { padding: 60px 5%; text-align: center; font-size: 0.8rem; letter-spacing: 0.2em; color: var(--color-ink-light); border-top: 1px solid #eee; }
 
-        @media (max-width: 900px) { .story-grid { grid-template-columns: 1fr; } .hero-title { font-size: 1.8rem; } }
+        @media (max-width: 900px) {
+            .story-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 1.8rem; }
+            .hero-message-wrapper { max-width: 90%; padding: 10px 15px; }
+            .hero-message p { white-space: normal; }
+            .quote-container { max-width: 95%; }
+            .cta-button { display: block; margin: 15px auto; max-width: 280px; }
+        }
     </style>
 </head>
 <body>
@@ -271,9 +254,8 @@
     </div>
     <div class="hero-content">
         <h1 class="hero-title">命の山を守る会</h1>
-        <div style="text-align: center;">
+        <div class="hero-message-wrapper">
             <div class="hero-message">
-
                 <p>あなたの飲む水は、どこから来た水ですか？</p>
                 <p>命の循環がはじまる山。</p>
                 <p>ここからすべての物語が始まります。</p>
@@ -289,21 +271,27 @@
     </div>
     <div class="story-grid">
         <article class="story-card">
-            <div class="video-wrapper"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/KXRv9yyN_tQ" title="命の山MV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="video-wrapper">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/KXRv9yyN_tQ?rel=0&modestbranding=1" title="命の山MV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
             <div class="story-caption">
                 <p class="caption-en">Message Movie</p>
                 <p class="caption-jp">山のメッセージ</p>
             </div>
         </article>
         <article class="story-card">
-            <div class="video-wrapper"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/H5cLetVTvJ0" title="Bears entering urban areas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="video-wrapper">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/H5cLetVTvJ0?rel=0&modestbranding=1" title="Bears entering urban areas" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
             <div class="story-caption">
                 <p class="caption-en">Bears entering urban areas</p>
                 <p class="caption-jp">社会問題の裏にあるストーリー</p>
             </div>
         </article>
         <article class="story-card">
-            <div class="video-wrapper"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/QhrYy-R8ZBs" title="第１話クマの生態と自然の循環" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <div class="video-wrapper">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/QhrYy-R8ZBs?rel=0&modestbranding=1" title="第１話クマの生態と自然の循環" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
             <div class="story-caption">
                 <p class="caption-en">Ecology</p>
                 <p class="caption-jp">クマの生態と自然の循環</p>
@@ -312,69 +300,29 @@
     </div>
 </section>
 
-<!-- Section 1: 水の循環 -->
-<section class="content-section">
-    <div class="section-inner">
-        <div class="section-header">
-            <h2 class="section-title-main">水の循環</h2>
+<section class="section statement-section">
+    <div class="container">
+        <div class="section-title">
+            <span class="section-title-en">STATEMENT</span>
+            <h2 class="section-title-jp">共育共創</h2>
         </div>
-        <div class="section-content">
-            <span class="quote">「万物の根源は水である」 ターレス／哲学者</span>
-
+        <div class="text-block">
+            <p>自然を学びなおし、次世代へ。<br>教え、教えられる関係を超えて。<br>自然から学び、自然と共に在る。</p>
+            <div class="quote-container" style="margin-top: 50px; margin-bottom: 50px;">
+                <span class="quote">「万物の根源は水である」 ターレス／哲学者</span>
+            </div>
             <p>水の総量は、46億年前から変わっておらず、<br>ずっとこの地球を循環し、すべての命と関わってきました</p>
-
-            <p>生態系の頂点に位置する私たち人間は<br>水の巡りを変えてしまい 命の巡りが変わりかけている</p>
-
+            <p>生態系の頂点に位置する私たち人間は 水の巡りを変えてしまい<br>命の巡りが変わりかけている</p>
             <p>それは、私たちだけではなく あらゆる生命の脅威でもあるのです。</p>
-
             <p>今、私たちには何ができるのでしょうか。</p>
         </div>
+
     </div>
 </section>
 
-<!-- Section 2: 活動紹介 -->
-<section class="content-section">
-    <div class="section-inner">
-        <div class="section-header">
-            <h2 class="section-title-main">活動紹介</h2>
-        </div>
-        <div class="section-content">
-            <p>私たちは、絵本や紙芝居を通じて<br>子どもたちに「自然の循環」を伝えています。</p>
-
-            <p>YouTubeやSNSで、<br>自然とは何か、どう共生していくかを<br>世界中の人々と共に学び、創っていきます。</p>
-        </div>
-        <div class="button-container">
-            <a href="#" class="cta-button">Our Story / 私たちの物語を読む</a>
-        </div>
-    </div>
-</section>
-
-<!-- Section 3: 経済の循環 -->
-<section class="content-section">
-    <div class="section-inner">
-        <div class="section-header">
-            <h2 class="section-title-main">経済の循環</h2>
-        </div>
-        <div class="section-content">
-            <p>メンバーシップ、サービス、協業による収益は<br>次の絵本や動画となり、共育共創へと循環します。</p>
-
-            <p>私たちは、暮らしと経済を<br>自然の循環に組み込んでいきます。</p>
-
-            <p>小さな一歩です。</p>
-
-            <p>でも、これが新しい世界基準となり、<br>自然と共生できる「次世代へ渡すべき未来へ」となります。</p>
-
-            <p style="margin-top: 40px; font-weight: 400;">命の山をまもる会</p>
-        </div>
-    </div>
-</section>
-
-<!-- Section 4: CTA -->
-<section class="content-section">
-    <div class="section-inner">
-        <div class="section-content">
-            <p style="font-size: 1.4rem; font-weight: 300;">一緒に、循環を育てませんか？</p>
-        </div>
+<section class="section cta-section">
+    <div class="cta-content">
+        <div class="cta-message">一緒に、循環を育てませんか？</div>
         <div class="button-container">
             <a href="#" class="cta-button">Our Story</a>
             <a href="#" class="cta-button">参加する▼</a>
@@ -408,6 +356,49 @@
             document.querySelector('.hero-background-image').style.backgroundImage = "url('scene1.png')";
         };
 
+        // 画像と動画の読み込み
+        window.addEventListener('load', function() {
+            console.log('ページの読み込みが完了しました');
+
+            // 背景画像の読み込み
+            const preloadImg = new Image();
+            preloadImg.src = 'シーン１.png';
+            preloadImg.onload = function() {
+                console.log('背景画像の読み込みが完了しました');
+                document.querySelector('.hero-background-image').style.backgroundImage = "url('シーン１.png')";
+            };
+            preloadImg.onerror = function() {
+                console.log('日本語ファイル名の画像読み込みに失敗しました、代替画像を使用します');
+                document.querySelector('.hero-background-image').style.backgroundImage = "url('scene1.png')";
+            };
+
+            // 動画の読み込みを最適化
+            const videoWrappers = document.querySelectorAll('.video-wrapper');
+            videoWrappers.forEach(function(wrapper) {
+                const iframe = wrapper.querySelector('iframe');
+                if (iframe) {
+                    // 動画読み込みのログ
+                    console.log('動画の読み込みを開始: ' + iframe.src);
+
+                    // iframeの読み込みイベント
+                    iframe.addEventListener('load', function() {
+                        console.log('動画の読み込みが完了しました: ' + this.src);
+                        // 読み込み完了時にスタイル調整（必要に応じて）
+                        wrapper.classList.add('loaded');
+                    });
+
+                    // エラー処理（クロスドメイン制約があるため限定的）
+                    setTimeout(function() {
+                        // 一定時間後にロード状態を確認
+                        if (!wrapper.classList.contains('loaded')) {
+                            console.log('動画の読み込みが遅延しています: ' + iframe.src);
+                            // ここで再読み込みを試みることも可能
+                            iframe.src = iframe.src;
+                        }
+                    }, 5000); // 5秒後にチェック
+                }
+            });
+        });
     });
 </script>
 
