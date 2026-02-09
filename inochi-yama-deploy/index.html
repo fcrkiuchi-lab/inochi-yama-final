@@ -358,8 +358,13 @@
     </div>
     <div class="story-grid">
         <article class="story-card">
-            <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/KXRv9yyN_tQ" title="命の山MV" frameborder="0" allowfullscreen></iframe>
+            <div class="video-wrapper" style="background-image: url('scene1.png'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center;">
+                <a href="https://www.youtube.com/watch?v=KXRv9yyN_tQ" target="_blank" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+                    <div style="width: 70px; height: 50px; background-color: rgba(255, 0, 0, 0.7); border-radius: 10px; display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <div style="width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 20px solid white; margin-left: 5px;"></div>
+                    </div>
+                    <span style="color: white; background-color: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px; font-size: 14px;">YouTubeで視聴</span>
+                </a>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Message Movie</p>
@@ -367,8 +372,13 @@
             </div>
         </article>
         <article class="story-card">
-            <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/H5cLetVTvJ0" title="Bears entering urban areas" frameborder="0" allowfullscreen></iframe>
+            <div class="video-wrapper" style="background-color: #2A374A; display: flex; justify-content: center; align-items: center;">
+                <a href="https://www.youtube.com/watch?v=H5cLetVTvJ0" target="_blank" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+                    <div style="width: 70px; height: 50px; background-color: rgba(255, 0, 0, 0.7); border-radius: 10px; display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <div style="width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 20px solid white; margin-left: 5px;"></div>
+                    </div>
+                    <span style="color: white; background-color: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px; font-size: 14px;">YouTubeで視聴</span>
+                </a>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Bears entering urban areas</p>
@@ -376,8 +386,13 @@
             </div>
         </article>
         <article class="story-card">
-            <div class="video-wrapper">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/QhrYy-R8ZBs" title="第１話クマの生態と自然の循環" frameborder="0" allowfullscreen></iframe>
+            <div class="video-wrapper" style="background-color: #2A374A; display: flex; justify-content: center; align-items: center;">
+                <a href="https://www.youtube.com/watch?v=QhrYy-R8ZBs" target="_blank" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">
+                    <div style="width: 70px; height: 50px; background-color: rgba(255, 0, 0, 0.7); border-radius: 10px; display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <div style="width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 20px solid white; margin-left: 5px;"></div>
+                    </div>
+                    <span style="color: white; background-color: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px; font-size: 14px;">YouTubeで視聴</span>
+                </a>
             </div>
             <div class="story-caption">
                 <p class="caption-en">Ecology</p>
@@ -487,26 +502,7 @@
             };
         };
 
-        // 各YouTubeビデオのロード状態を管理 - シンプルに
-        const videoWrappers = document.querySelectorAll('.video-wrapper');
-        videoWrappers.forEach(function(wrapper) {
-            wrapper.classList.add('loading');
-
-            const iframe = wrapper.querySelector('iframe');
-            if (iframe) {
-                // 3秒後にロード完了とみなす
-                setTimeout(() => {
-                    wrapper.classList.remove('loading');
-                    wrapper.classList.add('loaded');
-                }, 3000);
-
-                // iframeロード完了時
-                iframe.onload = function() {
-                    wrapper.classList.remove('loading');
-                    wrapper.classList.add('loaded');
-                };
-            }
-        });
+        // YouTube動画の代わりに静的リンクを使用するため、ロード検出処理は不要になりました
     });
 </script>
 
