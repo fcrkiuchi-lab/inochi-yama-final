@@ -26,7 +26,19 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
         header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: clamp(18px, 3.5vw, 32px) clamp(24px, 5vw, 56px); transition: background var(--transition-fast); }
         header.scrolled { background: rgba(249, 249, 247, 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-        .header-logo { font-size: clamp(0.85rem, 1.3vw, 1.0rem); font-weight: 300; color: #FFFFFF; letter-spacing: 0.28em; text-decoration: none; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7), 0 0 3px rgba(0, 0, 0, 0.5); }
+        .header-logo {
+            font-size: clamp(1.0rem, 1.5vw, 1.2rem);
+            font-weight: 400;
+            color: var(--color-gold);
+            letter-spacing: 0.28em;
+            text-decoration: none;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 5px rgba(0, 0, 0, 0.6);
+            transition: all 0.3s ease;
+        }
+        .header-logo:hover {
+            color: var(--color-gold-light);
+            transform: translateY(-1px);
+        }
 
         /* Hero Section */
         .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
@@ -342,125 +354,19 @@
 </head>
 <body>
 
-<header id="header">
+<header id="protected-header">
     <a href="#" class="header-logo">命の山を守る会</a>
 </header>
 
-<section class="hero">
-    <div class="hero-background-container">
-        <div class="hero-background-image"></div>
-        <div class="hero-background-gradient-1"></div>
-        <div class="hero-background-gradient-2"></div>
-    </div>
-    <div class="hero-content">
-        <h1 class="hero-title">命の山を守る会</h1>
-        <div class="hero-message-wrapper">
-            <div class="hero-message">
-                <p>あなたの飲む水は、どこから来た水ですか？</p>
-                <p>命の循環がはじまる山。</p>
-                <p>ここからすべての物語が始まります。</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section story-section">
-    <div class="section-title">
-        <span class="section-title-en">STORIES</span>
-        <h2 class="section-title-jp">命の山物語</h2>
-    </div>
-    <div class="story-grid">
-<div style="display: flex; justify-content: space-around; gap: 10px; flex-wrap: wrap; width: 100%;">
-  <iframe
-  id="video-left"
-  src="https://www.youtube.com/embed/KXRv9yyN_tQ"
-  width="31%"
-  height="200"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen>
-</iframe>
-  <iframe
-  id="video-center"
-  src="https://www.youtube.com/embed/H5cLetVTvJ0"
-  width="31%"
-  height="200"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen>
-</iframe>
-  <iframe
-  id="video-right"
-  src="https://www.youtube.com/embed/QhrYy-R8ZBs"
-  width="31%"
-  height="200"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen>
-</iframe>
+<main id="majin-factory">
+<div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+  <iframe id="video-left" src="https://www.youtube.com/embed/KXRv9yyN_tQ" width="300" height="200" frameborder="0" allowfullscreen></iframe>
+  <iframe id="video-center" src="https://www.youtube.com/embed/H5cLetVTvJ0" width="300" height="200" frameborder="0" allowfullscreen></iframe>
+  <iframe id="video-right" src="https://www.youtube.com/embed/QhrYy-R8ZBs" width="300" height="200" frameborder="0" allowfullscreen></iframe>
 </div>
-    </div>
-</section>
+</main>
 
-<section class="section statement-section">
-    <div class="container">
-        <div class="section-title">
-            <span class="section-title-en">STATEMENT</span>
-            <h2 class="section-title-jp">共育共創</h2>
-            <div style="margin-top: 40px; margin-bottom: 80px; padding: 0 10%;">
-                <p style="font-size: 1.25rem; font-weight: 300; line-height: 2.5; letter-spacing: 0.12em;">自然を学びなおし、次世代へ。<br>教え、教えられる関係を超えて。<br>自然から学び、自然と共に在る。</p>
-            </div>
-        </div>
-        <div class="text-block">
-            <div class="quote-container" style="margin-top: 20px; margin-bottom: 70px;">
-                <span class="quote">「万物の根源は水である」 ターレス／哲学者</span>
-            </div>
-
-            <p style="margin-bottom: 35px;">水の総量は、46億年前から変わっておらず、<br>ずっとこの地球を循環し、すべての命と関わってきました</p>
-
-            <p style="margin-bottom: 35px;">生態系の頂点に位置する私たち人間は 水の巡りを変えてしまい<br>命の巡りが変わりかけている</p>
-
-            <p style="margin-bottom: 35px;">それは、私たちだけではなく あらゆる生命の脅威でもあるのです。<br>今、私たちには何ができるのでしょうか。</p>
-        </div>
-
-    </div>
-</section>
-
-<section class="section story-section">
-    <div class="container">
-        <div class="section-title">
-            <span class="section-title-en">OUR ACTIVITIES & VISION</span>
-            <h2 class="section-title-jp">私たちの活動と展望</h2>
-        </div>
-        <div style="margin-bottom: 60px;"></div>
-        <div class="two-column-section">
-            <div class="column" style="background-color: rgba(160, 141, 94, 0.04); border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.03);">
-                <div class="column-title">
-                    <span class="column-title-en">ACTIVITIES</span>
-                    <h3 class="column-title-jp">活動紹介</h3>
-                </div>
-                <div class="text-block">
-                    <p style="margin-bottom: 35px;">私たちは、絵本や紙芝居を通じて<br>子どもたちに「自然の循環」を伝えています。</p>
-
-                    <p style="margin-bottom: 35px;">YouTubeやSNSで、<br>自然とは何か、どう共生していくかを<br>世界中の人々と共に学び、創っていきます。</p>
-                </div>
-            </div>
-            <div class="column" style="background-color: rgba(160, 141, 94, 0.04); border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.03);">
-                <div class="column-title">
-                    <span class="column-title-en">CIRCULATION OF ECONOMY</span>
-                    <h3 class="column-title-jp">経済の循環</h3>
-                </div>
-                <div class="text-block">
-                    <p style="margin-bottom: 35px;">メンバーシップ、サービス、協業による収益は<br>次の絵本や動画に活かされ、共育共創の循環を生みます。</p>
-
-                    <p style="margin-bottom: 35px;">私たちは、暮らしと経済を<br>自然の循環に組み込んでいきます。</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer>
+<footer id="protected-footer">
     <div class="footer-links">
         <a href="journey.html" class="footer-link">命の山をまもる会の歩み</a>
     </div>
@@ -468,12 +374,36 @@
 </footer>
 
 <script>
-    const header = document.getElementById('header');
+    const header = document.getElementById('protected-header');
     window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 80); });
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.story-card').forEach(el => observer.observe(el));
+
+    // まじん式工場管理スクリプト
+    async function updateFactory(jsonPath) {
+        try {
+            const response = await fetch(jsonPath + '?t=' + new Date().getTime());
+            if (!response.ok) throw new Error('JSON fetch failed');
+            const data = await response.json();
+
+            // 動画URLの更新
+            if (data.videos) {
+                Object.keys(data.videos).forEach(id => {
+                    const video = document.getElementById(id);
+                    if (video) {
+                        const videoData = data.videos[id];
+                        if (videoData.src) video.src = videoData.src;
+                        if (videoData.width) video.width = videoData.width;
+                        if (videoData.height) video.height = videoData.height;
+                    }
+                });
+            }
+        } catch (e) {
+            console.log('まじん式工場更新エラー:', e);
+        }
+    }
 
     // キャッシュ無効化処理 (v1)
     document.addEventListener('DOMContentLoaded', function() {
