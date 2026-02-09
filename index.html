@@ -149,19 +149,15 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.06);
             min-height: 200px;
         }
-        .video-wrapper video, .video-wrapper iframe {
-            width: 100%;
-            height: 100%;
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
-            object-fit: cover;
-            border: none;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
-        .video-wrapper.loaded::after {
-            display: none;
-        }
-        .video-wrapper::after {
+        .video-wrapper.loading::before {
             content: "動画読み込み中...";
             position: absolute;
             top: 50%;
@@ -169,6 +165,7 @@
             transform: translate(-50%, -50%);
             color: white;
             font-size: 0.9rem;
+            z-index: 1;
         }
         .story-caption { text-align: center; padding: 0 10px; }
         .caption-en { font-size: 0.9rem; letter-spacing: 0.15em; color: var(--color-gold); margin-bottom: 10px; font-weight: 400; }
@@ -319,21 +316,24 @@
             <p style="margin-bottom: 35px;">それは、私たちだけではなく あらゆる生命の脅威でもあるのです。</p>
 
             <p style="margin-bottom: 35px;">今、私たちには何ができるのでしょうか。</p>
-
-            <p style="margin-bottom: 35px;">私たちは、絵本や紙芝居を通じて<br>子どもたちに「自然の循環」を伝えています。</p>
-
-            <p style="margin-bottom: 35px;">YouTubeやSNSで、<br>自然とは何か、どう共生していくかを<br>世界中の人々と共に学び、創っていきます。</p>
-
-            <div class="cta-message" style="margin-top: 60px; font-size: 1.5rem; font-weight: 300;">一緒に、循環を育てませんか？</div>
-
-            <div style="margin-top: 40px; margin-bottom: 20px;">
-                <a href="#" class="cta-button">Our Story / 私たちの物語を読む</a>
-            </div>
         </div>
 
     </div>
 </section>
 
+<section class="section story-section">
+    <div class="container">
+        <div class="section-title">
+            <span class="section-title-en">ACTIVITIES</span>
+            <h2 class="section-title-jp">活動紹介</h2>
+        </div>
+        <div class="text-block">
+            <p style="margin-bottom: 35px;">私たちは、絵本や紙芝居を通じて<br>子どもたちに「自然の循環」を伝えています。</p>
+
+            <p style="margin-bottom: 35px;">YouTubeやSNSで、<br>自然とは何か、どう共生していくかを<br>世界中の人々と共に学び、創っていきます。</p>
+        </div>
+    </div>
+</section>
 
 <footer>&copy; 2025 命の山を守る会 All Rights Reserved.</footer>
 
@@ -361,25 +361,43 @@
             document.querySelector('.hero-background-image').style.backgroundImage = "url('scene1.png')";
         };
 
-        // 画像と動画の読み込み
+        // ページ読み込み時の処理
         window.addEventListener('load', function() {
-            console.log('ページの読み込みが完了しました');
-
             // 背景画像の読み込み
-            const preloadImg = new Image();
-            preloadImg.src = 'シーン１.png';
-            preloadImg.onload = function() {
-                document.querySelector('.hero-background-image').style.backgroundImage = "url('シーン１.png')";
-            };
-            preloadImg.onerror = function() {
-                document.querySelector('.hero-background-image').style.backgroundImage = "url('scene1.png')";
+            const bgImage = document.querySelector('.hero-background-image');
+
+            // まず日本語ファイル名を試す
+            const jpImg = new Image();
+            jpImg.src = 'シーン１.png';
+
+            jpImg.onload = function() {
+                bgImage.style.backgroundImage = "url('シーン１.png')";
             };
 
-            // 動画のラッパー要素にロード済みクラスを追加
-            document.querySelectorAll('.video-wrapper iframe').forEach(function(iframe) {
-                iframe.onload = function() {
-                    iframe.parentElement.classList.add('loaded');
+            jpImg.onerror = function() {
+                // 日本語ファイル名が読み込めない場合は英語ファイル名を使用
+                const enImg = new Image();
+                enImg.src = 'scene1.png';
+
+                enImg.onload = function() {
+                    bgImage.style.backgroundImage = "url('scene1.png')";
                 };
+            };
+
+            // 各YouTubeビデオのロード状態を管理
+            const videoWrappers = document.querySelectorAll('.video-wrapper');
+            videoWrappers.forEach(function(wrapper) {
+                // "loaded"クラスを追加
+                wrapper.classList.add('loading');
+
+                const iframe = wrapper.querySelector('iframe');
+                if (iframe) {
+                    // iframeが読み込まれたらloadingクラスを削除
+                    iframe.onload = function() {
+                        wrapper.classList.remove('loading');
+                        wrapper.classList.add('loaded');
+                    };
+                }
             });
         });
     });
