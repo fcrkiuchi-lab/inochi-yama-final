@@ -24,9 +24,18 @@
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-serif); background-color: var(--color-bg); color: var(--color-ink); overflow-x: hidden; line-height: 1.8; -webkit-font-smoothing: antialiased; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
-        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: clamp(18px, 3.5vw, 32px) clamp(24px, 5vw, 56px); transition: background var(--transition-fast); }
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: clamp(18px, 3.5vw, 32px) clamp(24px, 5vw, 56px); transition: background var(--transition-fast); display: flex; justify-content: space-between; align-items: center; }
         header.scrolled { background: rgba(249, 249, 247, 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
         .header-logo { font-size: clamp(0.85rem, 1.3vw, 1.0rem); font-weight: 300; color: #FFFFFF; letter-spacing: 0.28em; text-decoration: none; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7), 0 0 3px rgba(0, 0, 0, 0.5); }
+        .header-nav { display: flex; gap: 20px; }
+        .nav-link { font-size: 0.9rem; color: #FFFFFF; text-decoration: none; letter-spacing: 0.1em; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7), 0 0 3px rgba(0, 0, 0, 0.5); transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--color-gold); }
+        header.scrolled .header-logo, header.scrolled .nav-link { color: var(--color-ink); text-shadow: none; }
+        header.scrolled .nav-link:hover { color: var(--color-gold); }
+
+        @media (max-width: 768px) {
+            .header-nav { display: none; }
+        }
 
         /* Hero Section */
         .hero { position: relative; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
@@ -294,11 +303,14 @@
         }
         .footer-links {
             margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         .footer-link {
             display: inline-block;
             padding: 12px 30px;
-            margin: 0 10px;
+            margin: 0 10px 20px;
             color: var(--color-ink);
             text-decoration: none;
             letter-spacing: 0.1em;
@@ -316,7 +328,7 @@
             box-shadow: 0 4px 12px rgba(160, 141, 94, 0.2);
         }
         .footer-link::after {
-            content: "Our Journey";
+            content: attr(data-en);
             position: absolute;
             bottom: -20px;
             left: 50%;
@@ -343,7 +355,13 @@
 <body>
 
 <header id="header">
-    <a href="#" class="header-logo">命の山をまもる会</a>
+    <a href="index.html" class="header-logo">命の山をまもる会</a>
+    <nav class="header-nav">
+        <a href="index.html" class="nav-link">ホーム</a>
+        <a href="journey.html" class="nav-link">会の歩み</a>
+        <a href="service.html" class="nav-link">サービス</a>
+        <a href="lab.html" class="nav-link">ラボ</a>
+    </nav>
 </header>
 
 <section class="hero">
@@ -488,7 +506,9 @@
 
 <footer>
     <div class="footer-links">
-        <a href="journey.html" class="footer-link">命の山をまもる会の歩み</a>
+        <a href="journey.html" class="footer-link" data-en="Our Journey">命の山をまもる会の歩み</a>
+        <a href="service.html" class="footer-link" data-en="Services">サービス</a>
+        <a href="lab.html" class="footer-link" data-en="Lab">ラボ</a>
     </div>
     <div class="footer-copyright">&copy; 2025 命の山をまもる会 All Rights Reserved.</div>
 </footer>

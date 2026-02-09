@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ラボ | 命の山をまもる会</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #F9F9F7;
+            --color-bg-subtle: #F5F5F3;
+            --color-ink: #333333;
+            --color-ink-light: #555555;
+            --color-gold: #A08D5E;
+            --color-gold-light: #B8A77A;
+            --font-serif: 'Noto Serif JP', serif;
+            --transition-slow: 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-medium: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: 0.3s ease;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-serif); background-color: var(--color-bg); color: var(--color-ink); overflow-x: hidden; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; }
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; padding: clamp(18px, 3.5vw, 32px) clamp(24px, 5vw, 56px); transition: background var(--transition-fast); display: flex; justify-content: space-between; align-items: center; }
+        header.scrolled { background: rgba(249, 249, 247, 0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        .header-logo { font-size: clamp(0.85rem, 1.3vw, 1.0rem); font-weight: 300; color: #FFFFFF; letter-spacing: 0.28em; text-decoration: none; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7), 0 0 3px rgba(0, 0, 0, 0.5); }
+        .header-nav { display: flex; gap: 20px; }
+        .nav-link { font-size: 0.9rem; color: #FFFFFF; text-decoration: none; letter-spacing: 0.1em; text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7), 0 0 3px rgba(0, 0, 0, 0.5); transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--color-gold); }
+        header.scrolled .header-logo, header.scrolled .nav-link { color: var(--color-ink); text-shadow: none; }
+        header.scrolled .nav-link:hover { color: var(--color-gold); }
+
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .coming-soon {
+            font-size: 2.5rem;
+            letter-spacing: 0.2em;
+            font-weight: 300;
+            color: var(--color-gold);
+        }
+
+        footer {
+            padding: 80px 5% 60px;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--color-ink-light);
+            border-top: 1px solid #eee;
+        }
+        .footer-links {
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .footer-link {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 0 10px 20px;
+            color: var(--color-ink);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            background-color: #f0ede5;
+            border: 1px solid var(--color-gold-light);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 400;
+            position: relative;
+        }
+        .footer-link:hover {
+            background-color: var(--color-gold);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(160, 141, 94, 0.2);
+        }
+        .footer-link::after {
+            content: attr(data-en);
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--color-gold);
+            white-space: nowrap;
+        }
+        .footer-copyright {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<header id="header">
+    <a href="index.html" class="header-logo">命の山をまもる会</a>
+    <nav class="header-nav">
+        <a href="index.html" class="nav-link">ホーム</a>
+        <a href="journey.html" class="nav-link">会の歩み</a>
+        <a href="service.html" class="nav-link">サービス</a>
+        <a href="lab.html" class="nav-link">ラボ</a>
+    </nav>
+</header>
+
+<div class="main-content">
+    <h1 class="coming-soon">Coming Soon</h1>
+</div>
+
+<footer>
+    <div class="footer-links">
+        <a href="journey.html" class="footer-link" data-en="Our Journey">命の山をまもる会の歩み</a>
+        <a href="service.html" class="footer-link" data-en="Services">サービス</a>
+        <a href="lab.html" class="footer-link" data-en="Lab">ラボ</a>
+    </div>
+    <div class="footer-copyright">&copy; 2025 命の山をまもる会 All Rights Reserved.</div>
+</footer>
+
+<script>
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 80); });
+
+    // キャッシュ無効化処理 (v1)
+    document.addEventListener('DOMContentLoaded', function() {
+        // URLにタイムスタンプを追加してキャッシュを回避
+        if (!window.location.href.includes('cache_bust')) {
+            const timestamp = new Date().getTime();
+            const url = window.location.href + (window.location.href.includes('?') ? '&' : '?') + 'cache_bust=' + timestamp;
+            window.location.href = url;
+            return;
+        }
+    });
+</script>
+
+</body>
+</html>
