@@ -16,8 +16,8 @@
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
 
-    # Allow YouTube embeds
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.youtube.com https://www.youtube-nocookie.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.youtube.com https://www.youtube-nocookie.com;"
+    # Allow YouTube embeds - simplified policy
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.youtube.com; frame-src https://*.youtube.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;"
 
     # Cache settings
     Cache-Control = "public, max-age=31536000"
